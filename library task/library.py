@@ -45,4 +45,3 @@ class Library:
         for book_data in data:
             library.books.append(Book.from_dict(book_data))
         return library
-
