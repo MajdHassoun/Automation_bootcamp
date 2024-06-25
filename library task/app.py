@@ -6,7 +6,6 @@ from storage import save_library, load_library
 app = Flask(__name__)
 library = load_library()
 
-
 @app.route('/')
 def index():
     books = library.list_books()

@@ -3,7 +3,6 @@ from library import Library
 
 FILE_PATH = 'library.json'
 
-
 def save_library(library):
     with open(FILE_PATH, 'w') as file:
         json.dump(library.to_dict(), file)
