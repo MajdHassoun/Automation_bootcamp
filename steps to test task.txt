@@ -1,0 +1,100 @@
+Get user name
+Get password
+Insert user name to user input
+Insert password to password input
+Click login
+Search item in search window
+Click add item to cart
+Check total price in the cart
+Delete the item from the cart
+Check the cart is empty
+Add item in sale
+Check the discount in the cart
+
+
+
+
+
+Test 1 : log in with valid data
+
+arrange:
+get username
+get password
+
+
+act:
+enter the username to the username input
+enter the password
+click login
+
+assert:
+check if user is logged in
+
+
+
+
+Test 2 : search for an item in the popup window
+
+arrange:
+get username
+get password
+
+act:
+enter the item name in the search bar
+
+assert:
+item is being displayed in the popup window
+
+
+
+
+Test 3 : Add new item to cart
+
+arrange:
+get username
+get password
+search for the item
+
+act :
+click on add item
+
+assert:
+
+Check total price in the cart
+check if item is added
+
+
+
+Test 4 : Delete item
+
+arrange :
+get username
+get password
+enter the cart
+
+act :
+Delete the item from the cart
+
+assert:
+Check total price in the cart
+check if item is removed
+Check the cart is empty
+
+
+
+Test 5 : Add item in sale
+
+arrange:
+get username
+get password
+search for item on sale
+
+act:
+add item on sale to cart
+
+assert:
+check if item was added to the cart
+Check the discount in the cart
+Check total price in the cart
+
+
