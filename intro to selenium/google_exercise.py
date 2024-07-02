@@ -8,7 +8,7 @@ search_input = driver.find_element(By.ID, "APjFqb")
 search_input.send_keys("programming")
 search_input.send_keys(Keys.RETURN)
 
-second_res = driver.find_element(By.CSS_SELECTOR, "h3")
+second_res = driver.find_elements(By.TAG_NAME, "h3")
 
-print(second_res.text)
+print(second_res[1].text)
 driver.quit()
