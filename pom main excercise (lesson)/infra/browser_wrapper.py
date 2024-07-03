@@ -8,7 +8,7 @@ from infra.config_provider import ConfigProvider
 class BrowserWrapper:
 
     def __init__(self):
-        self.driver = None
+        self._driver = None
         self.config = ConfigProvider.load_from_file('../config.json')
         print("Test Start")
 
@@ -18,8 +18,8 @@ class BrowserWrapper:
         elif self.config["browser"] == "FireFox":
             self._driver = webdriver.Firefox()
         elif self.config["browser"] == "Edge":
-             self._driver = webdriver.Edge()
+            self._driver = webdriver.Edge()
 
         self._driver.get(url)
         self._driver.maximize_window()
-        return  self._driver
+        return self._driver
