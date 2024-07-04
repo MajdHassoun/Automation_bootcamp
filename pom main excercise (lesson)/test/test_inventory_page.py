@@ -18,8 +18,9 @@ class TestInventoryPage(unittest.TestCase):
         time.sleep(2)
         inventory_page = InventoryPage(driver)
         inventory_page.add_backpack_to_cart()
+        inventory_page.cart_button_inventory_click()
         time.sleep(2)
         cart_page = ShoppingCart(driver)
-        cart_page.count_items_in_cart()
+        print(cart_page.count_items_in_cart())
         time.sleep(2)
-        time.sleep(3)
+

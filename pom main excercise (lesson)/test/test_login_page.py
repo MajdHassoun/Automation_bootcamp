@@ -17,7 +17,7 @@ class TestLoginPage(unittest.TestCase):
         driver.get("https://www.saucedemo.com/")
         login_page = LoginPage(driver)
         login_page.login_flow("standard_user", "secret_sauce")
-        inventory_page = InventoryPage(driver)
+        # inventory_page = InventoryPage(driver)
         time.sleep(2)
 
         
