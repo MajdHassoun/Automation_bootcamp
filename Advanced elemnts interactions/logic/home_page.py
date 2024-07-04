@@ -1,17 +1,14 @@
 from selenium.webdriver.common.by import By
-
 from infra.base_page import BasePage
 
 
 class HomePage(BasePage):
-    AB_TESTING = '//a[text() = "A/B Testing"]'
     ADD_REMOVE_ELEMENTS = '//a[text() = "Add/Remove Elements"]'
-    BASIC_AUTH = '//a[text() = "Basic Auth (user and pass: admin)"]'
     BROKEN_IMAGES = '//a[text() = "Broken Images"]'
     CHALLENGING_DOM = '//a[text() = "Challenging DOM"]'
     CHECKBOXES = '//a[text() = "Checkboxes"]'
     CONTEXT_MENU = '//a[text() = "Context Menu"]'
-    DIGEST_AUTHENTICATION = '//a[text() = "Digest Authentication (user and pass: admin)"]'
+    DIGEST_AUTHENTICATION = '//a[text() = "Digest Authentication"]'
     DISAPPEARING_ELEMENTS = '//a[text() = "Disappearing Elements"]'
     DRAG_AND_DROP = '//a[text() = "Drag and Drop"]'
     DROPDOWN = '//a[text() = "Dropdown"]'
@@ -49,10 +46,9 @@ class HomePage(BasePage):
     TYPOS = '//a[text() = "Typos"]'
     WYSIWYG_EDITOR = '//a[text() = "WYSIWYG Editor"]'
 
-    def _init_(self, driver):
+    def __init__(self, driver):
         super().__init__(driver)
         self._add_remove_elements = self._driver.find_element(By.XPATH, self.ADD_REMOVE_ELEMENTS)
-        self._basic_auth = self._driver.find_element(By.XPATH, self.BASIC_AUTH)
         self._broken_images = self._driver.find_element(By.XPATH, self.BROKEN_IMAGES)
         self._challenging_dom = self._driver.find_element(By.XPATH, self.CHALLENGING_DOM)
         self._checkboxes = self._driver.find_element(By.XPATH, self.CHECKBOXES)
@@ -97,9 +93,6 @@ class HomePage(BasePage):
 
     def click_on_add_remove_link(self):
         self._add_remove_elements.click()
-
-    def click_on_basic_auth_link(self):
-        self._basic_auth.click()
 
     def click_on_broken_images_link(self):
         self._broken_images.click()
