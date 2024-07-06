@@ -9,8 +9,9 @@ class ContextMenuPage(BasePage):
 
     def __init__(self, driver):
         super().__init__(driver)
-        self._clickable_box = self._driver.find_elements(By.XPATH, self.CLICKABLE_BOX)
+        self._clickable_box = self._driver.find_element(By.XPATH, self.CLICKABLE_BOX)
 
     def click_on_the_box(self):
         action = ActionChains(self._driver)
         action.context_click(self._clickable_box).perform()
+

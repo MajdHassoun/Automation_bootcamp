@@ -6,6 +6,9 @@ from logic.challenging_dom_page import ChallengingDomPage
 from logic.checkboxes_page import CheckboxesPage
 from logic.context_menu_page import ContextMenuPage
 from logic.disappearing_elements_page import DisappearingElementsPage
+from logic.drag_and_drop_page import DragAndDropPage
+from logic.dropdown_list_page import DropDownListPage
+from logic.dynamic_content_page import DynamicContentPage
 from logic.home_page import HomePage
 
 
@@ -79,3 +82,42 @@ class Test(unittest.TestCase):
         disappearing_elements_obj.click_portfolio_button()
         time.sleep(1)
         driver.back()
+
+    def test_drag_and_drop(self):
+        driver = BrowserWrapper().get_driver(self.config["base_url"])
+        time.sleep(0.1)
+        home_page = HomePage(driver)
+        home_page.click_on_drag_and_drop_link()
+        time.sleep(0.5)
+        drag_and_drop_obj = DragAndDropPage(driver)
+        drag_and_drop_obj.drag_and_drop_l_to_r()
+        time.sleep(0.3)
+        drag_and_drop_obj.drag_and_drop_r_to_l()
+
+    def test_dropdown_window(self):
+        driver = BrowserWrapper().get_driver(self.config["base_url"])
+        time.sleep(0.1)
+        home_page = HomePage(driver)
+        home_page.click_on_dropdown_link()
+        time.sleep(0.5)
+        dropdown_obj = DropDownListPage(driver)
+        dropdown_obj.pick_both_options_flow()
+
+    def test_dynamic_content(self):
+        driver = BrowserWrapper().get_driver(self.config["base_url"])
+        time.sleep(0.1)
+        home_page = HomePage(driver)
+        home_page.click_on_dynamic_content_link()
+        time.sleep(0.5)
+        dynamic_content_obj = DynamicContentPage(driver)
+        print(dynamic_content_obj.get_dynamic_content_text())
+        print(dynamic_content_obj.get_image_src())
+        time.sleep(0.5)
+        dynamic_content_obj.refresh_page()
+        time.sleep(0.5)
+        print(dynamic_content_obj.get_dynamic_content_text())
+        print(dynamic_content_obj.get_image_src())
+
+
+
+    
