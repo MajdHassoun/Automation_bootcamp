@@ -9,6 +9,7 @@ from logic.disappearing_elements_page import DisappearingElementsPage
 from logic.drag_and_drop_page import DragAndDropPage
 from logic.dropdown_list_page import DropDownListPage
 from logic.dynamic_content_page import DynamicContentPage
+from logic.dynamic_controls_page import DynamicControlsPage
 from logic.home_page import HomePage
 
 
@@ -118,6 +119,40 @@ class Test(unittest.TestCase):
         print(dynamic_content_obj.get_dynamic_content_text())
         print(dynamic_content_obj.get_image_src())
 
+    def test_dynamic_controls_checkbox(self):
+        driver = BrowserWrapper().get_driver(self.config["base_url"])
+        time.sleep(0.1)
+        home_page = HomePage(driver)
+        home_page.click_on_dynamic_controls_link()
 
+        time.sleep(0.5)
+        dcp = DynamicControlsPage(driver)
 
-    
+        time.sleep(1)
+        dcp.click_on_checkbox()
+        time.sleep(1)
+        dcp.click_on_remove_button()
+        time.sleep(1)
+        dcp.click_on_checkbox_forced()
+        time.sleep(5)
+        driver.quit()
+
+    def test_dynamic_controls_input(self):
+        driver = BrowserWrapper().get_driver(self.config["base_url"])
+        time.sleep(0.1)
+        home_page = HomePage(driver)
+        home_page.click_on_dynamic_controls_link()
+
+        time.sleep(0.5)
+        dcp = DynamicControlsPage(driver)
+
+        time.sleep(1)
+        dcp.click_on_enable_button()
+        time.sleep(1)
+        dcp.type_in_input("HELLO")
+        time.sleep(1)
+        dcp.click_on_disable_button()
+        time.sleep(1)
+        dcp.type_in_input_forced("BEY")
+        time.sleep(5)
+        driver.quit()
