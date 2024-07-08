@@ -1,5 +1,6 @@
 from selenium.webdriver.common.by import By
-
+from selenium.webdriver.support.wait import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
 from infra.base_page import BasePage
 
 
@@ -32,7 +33,7 @@ class BasePageApp(BasePage):
         self._liked_videos_button = self._driver.find_element(By.XPATH, self.LIKED_VIDEOS_BUTTON)
         self._show_more_subscriptions_button = self._driver.find_element(By.XPATH, self.SHOW_MORE_SUBSCRIPTIONS_BUTTON)
         self._show_less_subscriptions_button = self._driver.find_element(By.XPATH, self.SHOW_LESS_SUBSCRIPTIONS_BUTTON)
-        self._all_subscription_button = self._driver.find_element(By.XPATH, self.ALL_SUBSCRIPTION_BUTTON)
+
 
     def search(self, query: str):
         self._search_bar.clear()
@@ -70,4 +71,7 @@ class BasePageApp(BasePage):
         self._show_less_subscriptions_button.click()
 
     def view_all_subscriptions(self):
-        self._all_subscription_button.click()
+        element = WebDriverWait(self._driver, 15).until(
+            EC.presence_of_element_located((By.XPATH, self.ALL_SUBSCRIPTION_BUTTON)))
+        element.click()
+        element.click()

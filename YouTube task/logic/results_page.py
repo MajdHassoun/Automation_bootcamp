@@ -1,5 +1,6 @@
 from selenium.webdriver.common.by import By
-
+from selenium.webdriver.support.wait import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
 from logic.base_page_app import BasePageApp
 
 
@@ -18,4 +19,6 @@ class ResultsPage(BasePageApp):
 
     def get_first_result_title(self):
         """Returns the title of the first search result."""
-        return self._first_result.text
+        element = WebDriverWait(self._driver, 15).until(
+            EC.presence_of_element_located((By.XPATH, self.FIRST_RESULT)))
+        return element.text
