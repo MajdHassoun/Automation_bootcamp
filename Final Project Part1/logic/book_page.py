@@ -1,5 +1,6 @@
 from selenium.webdriver.common.by import By
-
+from selenium.webdriver.support.wait import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
 from logic.base_page_app import BasePageApp
 
 
@@ -10,15 +11,21 @@ class BookPage(BasePageApp):
 
     def __init__(self, driver):
         super().__init__(driver)
-        self._book_name = self._driver.find_element(By.XPATH, self.BOOK_NAME)
-        self._book_summary = self._driver.find_element(By.XPATH, self.BOOK_SUMMARY)
-        self._book_availability = self._driver.find_element(By.XPATH, self.BOOK_AVAILABILITY)
 
     def get_book_name(self):
-        return self._book_name.text
+        book_name = WebDriverWait(self._driver, 15).until(
+            EC.presence_of_element_located((By.XPATH, self.BOOK_NAME))
+        )
+        return book_name.text
 
-    def get_book_summary(self):
-        return self._book_summary.text
+    def is_book_summary_displayed(self):
+        book_summary = WebDriverWait(self._driver, 15).until(
+            EC.visibility_of_element_located((By.XPATH, self.BOOK_SUMMARY))
+        )
+        return book_summary.is_displayed()
 
-    def get_book_availability(self):
-        return self._book_availability.text
+    def is_book_availability_displayed(self):
+        book_availability = WebDriverWait(self._driver, 15).until(
+            EC.visibility_of_element_located((By.XPATH, self.BOOK_AVAILABILITY))
+        )
+        return book_availability.is_displayed()

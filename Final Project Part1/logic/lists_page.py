@@ -1,3 +1,6 @@
+from selenium.webdriver.common.by import By
+from selenium.webdriver.support.wait import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
 from logic.base_page_app import BasePageApp
 
 
@@ -7,12 +10,18 @@ class ListsPage(BasePageApp):
 
     def __init__(self, driver):
         super().__init__(driver)
-        self._list_name_button = self._driver.find_element(By.XPATH, self.LIST_NAME_BUTTON)
-        self._book_name = self._driver.find_element(By.XPATH, self.BOOK_NAME)
 
     def get_list_name_button(self):
-        return self._list_name_button.click()
+        element = WebDriverWait(self._driver, 10).until(
+            EC.presence_of_element_located((By.XPATH, self.LIST_NAME_BUTTON)))
+        return element.text
 
     def get_book_name(self):
-        return self._book_name.is_displayed()
-    
+        element = WebDriverWait(self._driver, 10).until(
+            EC.presence_of_element_located((By.XPATH, self.BOOK_NAME)))
+        return element.text
+
+    def enter_delete_page(self):
+        element = WebDriverWait(self._driver, 10).until(
+            EC.element_to_be_clickable((By.XPATH, self.LIST_NAME_BUTTON)))
+        return element.click()

@@ -1,6 +1,7 @@
 from selenium.webdriver.common.by import By
-# from selenium.webdriver.support.wait import WebDriverWait
-# from selenium.webdriver.support import expected_conditions as EC
+
+from selenium.webdriver.support.wait import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
 from infra.base_page import BasePage
 
 
@@ -21,54 +22,86 @@ class BasePageApp(BasePage):
     def __init__(self, driver):
         super().__init__(driver)
         self._header_logo_link = self._driver.find_element(By.XPATH, self.HEADER_LOGO_LINK)
-        self._header_home_button = self._driver.find_element(By.XPATH, self.HEADER_HOME_BUTTON)
-        self._header_libraries_button = self._driver.find_element(By.XPATH, self.HEADER_LIBRARIES_BUTTON)
-        self._header_topics_button = self._driver.find_element(By.XPATH, self.HEADER_TOPICS_BUTTON)
-        self._header_lists_button = self._driver.find_element(By.XPATH, self.HEADER_LISTS_BUTTON)
-        self._header_about_button = self._driver.find_element(By.XPATH, self.HEADER_ABOUT_BUTTON)
-        self._header_for_librarians_button = self._driver.find_element(By.XPATH, self.HEADER_FOR_LIBRARIANS_BUTTON)
-        self._footer_logo = self._driver.find_element(By.XPATH, self.FOOTER_LOGO)
 
     def click_home_button(self):
-        self._header_home_button.click()
+        header_home_button = WebDriverWait(self._driver, 15).until(
+            EC.element_to_be_clickable((By.XPATH, self.HEADER_HOME_BUTTON))
+        )
+        header_home_button.click()
 
-    def click_libraries_button(self):
-        self._header_libraries_button.click()
+    def click_header_libraries_button(self):
+        header_libraries_button = WebDriverWait(self._driver, 15).until(
+            EC.element_to_be_clickable((By.XPATH, self.HEADER_LIBRARIES_BUTTON))
+        )
+        header_libraries_button.click()
 
-    def click_topics_button(self):
-        self._header_topics_button.click()
+    def click_header_topics_button(self):
+        topics_button = WebDriverWait(self._driver, 15).until(
+            EC.element_to_be_clickable((By.XPATH, self.HEADER_TOPICS_BUTTON))
+        )
+        topics_button.click()
 
-    def click_lists_button(self):
-        self._header_lists_button.click()
+    def click_header_lists_button(self):
+        lists_button = WebDriverWait(self._driver, 15).until(
+            EC.element_to_be_clickable((By.XPATH, self.HEADER_LISTS_BUTTON))
+        )
+        lists_button.click()
 
-    def click_about_button(self):
-        self._header_about_button.click()
+    def click_header_about_button(self):
+        about_button = WebDriverWait(self._driver, 15).until(
+            EC.element_to_be_clickable((By.XPATH, self.HEADER_ABOUT_BUTTON))
+        )
+        about_button.click()
 
-    def click_for_librarians_button(self):
-        self._header_for_librarians_button.click()
+    def click_header_for_librarians_button(self):
+        for_librarians_button = WebDriverWait(self._driver, 15).until(
+            EC.element_to_be_clickable((By.XPATH, self.HEADER_FOR_LIBRARIANS_BUTTON))
+        )
+        for_librarians_button.click()
 
     def is_footer_logo_visible(self):
-        return self._footer_logo.is_displayed()
+        footer_logo = WebDriverWait(self._driver, 15).until(
+            EC.visibility_of_element_located((By.XPATH, self.FOOTER_LOGO))
+        )
+
+        return footer_logo.is_displayed()
 
     def click_profile_button(self):
-        profile_button = self._driver.find_element(By.XPATH, self.PROFILE_BUTTON)
-        profile_button.click()
+        WebDriverWait(self._driver, 10).until(
+            EC.invisibility_of_element_located((By.XPATH, '//h3[text() = "Create new list"]')))
+
+        element = WebDriverWait(self._driver, 10).until(
+            EC.element_to_be_clickable((By.XPATH, self.PROFILE_BUTTON)))
+
+        element.click()
 
     def click_favorite_libraries_button(self):
-        profile_favorite_libraries_button = self._driver.find_element(By.XPATH,
-                                                                      self.PROFILE_FAVORITE_LIBRARIES_BUTTON)
-        profile_favorite_libraries_button.click()
+        element = WebDriverWait(self._driver, 15).until(
+            EC.element_to_be_clickable((By.XPATH, self.PROFILE_FAVORITE_LIBRARIES_BUTTON)))
+        element.click()
 
     def click_profile_lists_button(self):
-        profile_lists_button = self._driver.find_element(By.XPATH, self.PROFILE_LISTS_BUTTON)
-        profile_lists_button.click()
+        element = WebDriverWait(self._driver, 10).until(
+            EC.element_to_be_clickable((By.XPATH, self.PROFILE_LISTS_BUTTON)))
+        element.click()
 
     def click_saved_searches_button(self):
-        profile_saved_searches_button = self._driver.find_element(By.XPATH, self.PROFILE_SAVED_SEARCHES_BUTTON)
-        profile_saved_searches_button.click()
+        element = WebDriverWait(self._driver, 10).until(
+            EC.element_to_be_clickable((By.XPATH, self.PROFILE_SAVED_SEARCHES_BUTTON)))
+        element.click()
 
-    # def view_all_subscriptions(self):
-    #     element = WebDriverWait(self._driver, 15).until(
-    #         EC.presence_of_element_located((By.XPATH, self.ALL_SUBSCRIPTION_BUTTON)))
-    #     element.click()
-    #     element.click()
+    def navigate_to_lists_flow(self):
+        self.click_profile_button()
+        self.click_profile_lists_button()
+
+    def navigate_to_favorite_libraries_flow(self):
+        # WebDriverWait(self._driver, 10).until(
+        #     EC.text_to_be_present_in_element_attribute((By.XPATH,
+        #                                                 '//button[@data-testid="library-favorite-icon-216413"]'),
+        #                                                "aria-label", "Remove Kimico Ltd as a favorite library"))
+        self.click_profile_button()
+        self.click_favorite_libraries_button()
+
+    def navigate_to_saved_searches_flow(self):
+        self.click_profile_button()
+        self.click_saved_searches_button()

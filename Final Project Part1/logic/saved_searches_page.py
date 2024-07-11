@@ -1,5 +1,6 @@
 from selenium.webdriver.common.by import By
-
+from selenium.webdriver.support.wait import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
 from logic.base_page_app import BasePageApp
 
 
@@ -11,21 +12,26 @@ class SavedSearchesPage(BasePageApp):
 
     def __init__(self, driver):
         super().__init__(driver)
-        self._search_name = self._driver.find_element(By.XPATH, self.SEARCH_NAME)
-        self._saved_searches_checkbox = self._driver.find_element(By.XPATH, self.SAVED_SEARCHES_CHECKBOX)
-        self._delete_search_button = self._driver.find_element(By.XPATH, self.DELETE_SEARCH_BUTTON)
 
     def get_no_saved_searches_message(self):
-        no_saved_searches_message = self._driver.find_element(By.XPATH, self.NO_SAVED_SEARCHES_MESSAGE)
-        return no_saved_searches_message.is_displayed()
+        element = WebDriverWait(self._driver, 10).until(
+            EC.visibility_of_element_located((By.XPATH, self.NO_SAVED_SEARCHES_MESSAGE)))
+        return element.is_displayed()
 
     def get_search_name(self):
-        return self._search_name.text
+        element = WebDriverWait(self._driver, 10).until(
+            EC.visibility_of_element_located((By.XPATH, self.SEARCH_NAME)))
+        return element.text
 
     def click_saved_searches_checkbox(self):
-        self._saved_searches_checkbox.click()
+        element = WebDriverWait(self._driver, 10).until(
+            EC.element_to_be_clickable((By.XPATH, self.SAVED_SEARCHES_CHECKBOX)))
+
+        element.click()
 
     def click_delete_search_button(self):
-        self._delete_search_button.click()
+        element = WebDriverWait(self._driver, 10).until(
+            EC.element_to_be_clickable((By.XPATH, self.DELETE_SEARCH_BUTTON)))
 
+        element.click()
 

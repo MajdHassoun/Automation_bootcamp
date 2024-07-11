@@ -1,22 +1,28 @@
+import time
+
 from selenium.webdriver.common.by import By
 
 from logic.base_page_app import BasePageApp
+from selenium.webdriver.support.wait import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
 
 
 class LibrariesSearchResultsPage(BasePageApp):
     LIBRARY_NAME = '//h1[@data-testid="institution-name"]'
-    FAVORITE_LIBRARY_BUTTON = '//button[@class="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeMedium mui-15mydm5"]'
+    FAVORITE_LIBRARY_BUTTON = '//button[@data-testid="library-favorite-icon-216413"]'
 
     def __init__(self, driver):
         super().__init__(driver)
-        self._library_name = self._driver.find_element(By.XPATH, self.LIBRARY_NAME)
-        self._favorite_library_button = self._driver.find_element(By.XPATH, self.FAVORITE_LIBRARY_BUTTON)
 
     def get_library_name(self):
-        return self._library_name.text
+        library_name = WebDriverWait(self._driver, 15).until(
+            EC.visibility_of_element_located((By.XPATH, self.LIBRARY_NAME))
+        )
+        return library_name.text
 
-    def display_library_name(self):
-        return self._library_name.is_displayed()
-
-    def click_favorite_library_button(self):
-        self._favorite_library_button.click()
+    def click_save_library_to_favorites_button(self):
+        favorite_button = WebDriverWait(self._driver, 15).until(
+            EC.element_to_be_clickable((By.XPATH, self.FAVORITE_LIBRARY_BUTTON))
+        )
+        favorite_button.click()
+        time.sleep(10)

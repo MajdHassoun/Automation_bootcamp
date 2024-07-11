@@ -1,5 +1,6 @@
 from selenium.webdriver.common.by import By
-
+from selenium.webdriver.support.wait import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
 from logic.base_page_app import BasePageApp
 
 
@@ -11,19 +12,27 @@ class FavoriteLibrariesPage(BasePageApp):
 
     def __init__(self, driver):
         super().__init__(driver)
-        self._favorite_library_name = self._driver.find_element(By.XPATH, self.FAVORITE_LIBRARY_NAME)
-        self._remove_favorite_button = self._driver.find_element(By.XPATH, self.REMOVE_FAVORITE_BUTTON)
 
     def get_favorite_library_name(self):
-        return self._favorite_library_name.text
+        element = WebDriverWait(self._driver, 10).until(
+            EC.visibility_of_element_located((By.XPATH, self.FAVORITE_LIBRARY_NAME)))
+
+        return element.text
 
     def click_remove_favorite_button(self):
-        self._remove_favorite_button.click()
+        element = WebDriverWait(self._driver, 10).until(
+            EC.element_to_be_clickable((By.XPATH, self.REMOVE_FAVORITE_BUTTON)))
+
+        element.click()
 
     def click_confirm_remove_button(self):
-        confirm_remove_button = self._driver.find_element(By.XPATH, self.CONFIRM_REMOVE_BUTTON)
-        confirm_remove_button.click()
+        element = WebDriverWait(self._driver, 10).until(
+            EC.element_to_be_clickable((By.XPATH, self.CONFIRM_REMOVE_BUTTON)))
+
+        element.click()
 
     def get_no_libraries_message(self):
-        no_libraries_message = self._driver.find_element(By.XPATH, self.NO_LIBRARIES_MESSAGE)
-        return no_libraries_message.is_displayed()
+        element = WebDriverWait(self._driver, 10).until(
+            EC.visibility_of_element_located((By.XPATH, self.NO_LIBRARIES_MESSAGE)))
+
+        return element.is_displayed()

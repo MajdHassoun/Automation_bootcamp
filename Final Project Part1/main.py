@@ -23,4 +23,13 @@
 # de = "123 hello"
 # print(de.split("2")[1])
 
+# class fwdf:
+#     def __init__(self):
+#         self._hi = ["123 hi" , "4.2 bey", "54 sho"]
+#
+#     def return_hi(self):
+#         return self._hi
+#
+# def println(list):
+
 

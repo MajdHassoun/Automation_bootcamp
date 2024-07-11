@@ -1,6 +1,8 @@
 from selenium.webdriver.common.by import By
+from selenium.webdriver.support.wait import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
+
 from infra.base_page import BasePage
-from logic.utils import Utils
 
 
 class FirstSignInPage(BasePage):
@@ -10,20 +12,25 @@ class FirstSignInPage(BasePage):
 
     def __init__(self, driver):
         super().__init__(driver)
-        self._email_input = self._driver.find_element(By.XPATH, self.EMAIL_INPUT)
-        self._continue_button = self._driver.find_element(By.XPATH, self.CONTINUE_BUTTON)
-        self._page_title = self._driver.find_element(By.XPATH, self.PAGE_TITLE)
-        self.init_page()
-
-    def init_page(self):
-        Utils.wait_for_element(self._page_title.is_displayed(), True, 2, 10)
 
     def enter_email(self, email):
-        self._email_input.clear()
-        self._email_input.send_keys(email)
+        email_input = WebDriverWait(self._driver, 15).until(
+            EC.visibility_of_element_located((By.XPATH, self.EMAIL_INPUT))
+        )
+        email_input.clear()
+        email_input.send_keys(email)
 
     def click_continue(self):
-        self._continue_button.click()
+        continue_button = WebDriverWait(self._driver, 15).until(
+            EC.element_to_be_clickable((By.XPATH, self.CONTINUE_BUTTON))
+        )
+        continue_button.click()
+
+    def get_page_title(self):
+        page_title = WebDriverWait(self._driver, 15).until(
+            EC.visibility_of_element_located((By.XPATH, self.PAGE_TITLE))
+        )
+        return page_title.text
 
     def first_signin_flow(self, email):
         self.enter_email(email)

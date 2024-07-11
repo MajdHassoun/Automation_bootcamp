@@ -3,4 +3,4 @@ class BasePage:
         self._driver = driver
 
     def refresh_page(self):
-        self._driver.refresh()
+        self._driver.reload()

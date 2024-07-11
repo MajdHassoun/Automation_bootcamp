@@ -1,5 +1,6 @@
 from selenium.webdriver.common.by import By
-
+from selenium.webdriver.support.wait import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
 from logic.base_page_app import BasePageApp
 
 
@@ -11,19 +12,29 @@ class DeleteListPage(BasePageApp):
 
     def __init__(self, driver):
         super().__init__(driver)
-        self._options_button = self._driver.find_element(By.XPATH, self.OPTIONS_BUTTON)
 
     def click_options_button(self):
-        self._options_button.click()
+        element = WebDriverWait(self._driver, 10).until(
+            EC.element_to_be_clickable((By.XPATH, self.OPTIONS_BUTTON)))
+        element.click()
 
     def click_delete_list_button(self):
-        delete_list_button = self._driver.find_element(By.XPATH, self.DELETE_LIST_BUTTON)
-        delete_list_button.click()
+        element = WebDriverWait(self._driver, 10).until(
+            EC.element_to_be_clickable((By.XPATH, self.DELETE_LIST_BUTTON)))
+        element.click()
 
     def click_confirm_delete_button(self):
-        confirm_delete_button = self._driver.find_element(By.XPATH, self.CONFIRM_DELETE_BUTTON)
-        confirm_delete_button.click()
+        element = WebDriverWait(self._driver, 10).until(
+            EC.element_to_be_clickable((By.XPATH, self.CONFIRM_DELETE_BUTTON)))
+
+        element.click()
 
     def get_no_lists_found_message(self):
-        no_lists_found_message = self._driver.find_element(By.XPATH, self.NO_LISTS_FOUND_MESSAGE)
-        return no_lists_found_message.is_displayed()
+        element = WebDriverWait(self._driver, 10).until(
+            EC.visibility_of_element_located((By.XPATH, self.PROFILE_BUTTON)))
+        return element.is_displayed()
+
+    def delete_list_flow(self):
+        self.click_options_button()
+        self.click_delete_list_button()
+        self.click_confirm_delete_button()

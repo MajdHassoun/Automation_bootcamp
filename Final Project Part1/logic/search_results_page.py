@@ -1,5 +1,6 @@
 from selenium.webdriver.common.by import By
-
+from selenium.webdriver.support.wait import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
 from logic.base_page_app import BasePageApp
 
 
@@ -15,45 +16,48 @@ class SearchResultsPage(BasePageApp):
     CREATE_LIST_BUTTON = '//button[@data-testid="create-list-dialog-create-button"]'
     SAVE_SEARCH_BUTTON = '//button[@data-testid="save-search-button"]'
     CONFIRM_SAVE_SEARCH_BUTTON = '//button[@data-testid="save-search-dialog-create-button"]'
+    PAGE_RESULT_TITLE = '//h2[@class="MuiTypography-root MuiTypography-body2 mui-ar2wnm"]'
 
     def __init__(self, driver):
         super().__init__(driver)
-        self._results_list = self._driver.find_elements(By.XPATH, self.RESULTS_LIST)
-        self._item_type = self._driver.find_elements(By.XPATH, self.ITEM_TYPE)
-        self._add_item_to_list = self._driver.find_element(By.XPATH, self.ADD_ITEM_TO_LIST)
-        self._save_search_button = self._driver.find_element(By.XPATH, self.SAVE_SEARCH_BUTTON)
 
     def click_first_result(self):
-        """Clicks the first result in the results list."""
-        self._results_list[0].click()
+        element = WebDriverWait(self._driver, 10).until(
+            EC.presence_of_all_elements_located((By.XPATH, self.RESULTS_LIST)))
+        element[0].click()
 
     def return_first_result_name(self):
-        return self._results_list[0].text
+        element = WebDriverWait(self._driver, 10).until(
+            EC.presence_of_all_elements_located((By.XPATH, self.RESULTS_LIST)))
+        return element[0].text
 
     def get_item_type_text(self):
-        """Returns the text of the item type element."""
-        return self._item_type[0].text
+        element = WebDriverWait(self._driver, 10).until(
+            EC.presence_of_all_elements_located((By.XPATH, self.ITEM_TYPE)))
+        return element[0].text
 
     def click_add_item_to_list(self):
-        """Clicks the 'add item to list' button."""
-        self._add_item_to_list.click()
+        element = WebDriverWait(self._driver, 10).until(
+            EC.element_to_be_clickable((By.XPATH, self.ADD_ITEM_TO_LIST)))
+        element.click()
 
     def enter_list_name(self, name):
-        """Enters a name into the 'create list name' input field."""
-        create_list_name_input = self._driver.find_element(By.XPATH, self.CREATE_LIST_NAME_INPUT)
-        create_list_name_input.clear()
-        create_list_name_input.send_keys(name)
+        element = WebDriverWait(self._driver, 10).until(
+            EC.presence_of_element_located((By.XPATH, self.CREATE_LIST_NAME_INPUT)))
+        element.clear()
+        element.send_keys(name)
 
     def enter_list_description(self, description):
-        """Enters a description into the 'list description' input field."""
-        list_description_input = self._driver.find_element(By.XPATH, self.LIST_DESCRIPTION_INPUT)
-        list_description_input.clear()
-        list_description_input.send_keys(description)
+        element = WebDriverWait(self._driver, 10).until(
+            EC.presence_of_element_located((By.XPATH, self.LIST_DESCRIPTION_INPUT)))
+        element.clear()
+        element.send_keys(description)
 
     def click_create_list_button(self):
-        """Clicks the 'create list' button."""
-        create_list_button = self._driver.find_element(By.XPATH, self.CREATE_LIST_BUTTON)
-        create_list_button.click()
+        element = WebDriverWait(self._driver, 10).until(
+            EC.element_to_be_clickable((By.XPATH, self.CREATE_LIST_BUTTON)))
+        element.click()
+        # time.sleep(3)
 
     def create_list_flow(self, list_name, list_description):
         """Flow function to create a list starting from clicking the add item to list button."""
@@ -63,8 +67,17 @@ class SearchResultsPage(BasePageApp):
         self.click_create_list_button()
 
     def click_save_search_button(self):
-        self._save_search_button.click()
+        element = WebDriverWait(self._driver, 10).until(
+            EC.element_to_be_clickable((By.XPATH, self.SAVE_SEARCH_BUTTON)))
+        element.click()
 
     def click_confirm_save_search_button(self):
-        confirm_save_search_button = self._driver.find_element(By.XPATH, self.CONFIRM_SAVE_SEARCH_BUTTON)
-        confirm_save_search_button.click()
+        element = WebDriverWait(self._driver, 10).until(
+            EC.element_to_be_clickable((By.XPATH, self.CONFIRM_SAVE_SEARCH_BUTTON)))
+        element.click()
+
+    def add_create_list_flow(self, list_name, list_description):
+        self.click_add_item_to_list()
+        self.enter_list_name(list_name)
+        self.enter_list_description(list_description)
+        self.click_create_list_button()
