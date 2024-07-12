@@ -1,18 +1,20 @@
 import unittest
 from infra.browser_wrapper import BrowserWrapper
 from infra.config_provider import ConfigProvider
-from logic.book_page import BookPage
 from logic.home_page import HomePage
 from logic.first_sign_in_page import FirstSignInPage
+from logic.saved_searches_page import SavedSearchesPage
 from logic.search_results_page import SearchResultsPage
 from logic.second_sign_in_page import SecondSignInPage
+from logic.base_page_app import BasePageApp
 
 
-class BookSearchTest(unittest.TestCase):
+class LibraryTest(unittest.TestCase):
     def setUp(self):
         self.browser = BrowserWrapper()
         self.config = ConfigProvider.load_config_json()
         self.driver = self.browser.get_driver(self.config["url"])
+        self.base_page_app = BasePageApp(self.driver)
         self.home_page = HomePage(self.driver)
         self.home_page.refresh_page()
         self.home_page.click_accept_cookies()
@@ -21,28 +23,23 @@ class BookSearchTest(unittest.TestCase):
         first_sign_in.first_signin_flow(self.config["username"])
         second_sign_in = SecondSignInPage(self.driver)
         second_sign_in.second_signin_flow(self.config["username"], self.config["password"])
+        self.results_page = SearchResultsPage(self.driver)
+        self.saved_searches_page = SavedSearchesPage(self.driver)
 
     def tearDown(self):
         self.browser.close_browser()
 
-    def test_search_book_with_signin(self):
+    def test_save_search(self):
         self.home_page.search_book_flow(self.config["book_name1"])
-        results_page = SearchResultsPage(self.driver)
-        results_page.click_first_result()
-        book_page = BookPage(self.driver)
-        book_name_displayed = book_page.get_book_name()
-        self.assertEqual(self.config["book_name1"], book_name_displayed)
+        self.results_page.click_save_search_button()
+        self.results_page.click_confirm_save_search_button()
+        self.base_page_app.navigate_to_saved_searches_flow()
+        self.assertTrue(self.saved_searches_page.get_search_name())
+        # added a time sleep in line's 38 logic page
 
-    def test_check_book_summary_with_signin(self):
-        self.home_page.search_book_flow(self.config["book_name1"])
-        results_page = SearchResultsPage(self.driver)
-        results_page.click_first_result()
-        book_page = BookPage(self.driver)
-        self.assertTrue(book_page.is_book_summary_displayed())
-
-    def test_check_book_availability_with_signin(self):
-        self.home_page.search_book_flow(self.config["book_name1"])
-        results_page = SearchResultsPage(self.driver)
-        results_page.click_first_result()
-        book_page = BookPage(self.driver)
-        self.assertTrue(book_page.is_book_availability_displayed())
+    def test_delete_saved_search(self):
+        self.base_page_app.navigate_to_saved_searches_flow()
+        self.saved_searches_page.click_saved_searches_checkbox()
+        self.saved_searches_page.click_delete_search_button()
+        self.assertTrue(self.saved_searches_page.get_no_saved_searches_message())
+        # select checkbox button not working

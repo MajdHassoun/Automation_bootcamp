@@ -12,6 +12,7 @@ class SigninTest(unittest.TestCase):
         self.config = ConfigProvider.load_config_json()
         self.driver = self.browser.get_driver(self.config["url"])
         self.home_page = HomePage(self.driver)
+        self.home_page.refresh_page()
         self.home_page.click_accept_cookies()
 
     def tearDown(self):
