@@ -10,6 +10,7 @@ from logic.second_sign_in_page import SecondSignInPage
 
 class BookSearchTest(unittest.TestCase):
     def setUp(self):
+        # Arrange
         self.browser = BrowserWrapper()
         self.config = ConfigProvider.load_config_json()
         self.driver = self.browser.get_driver(self.config["url"])
@@ -26,23 +27,30 @@ class BookSearchTest(unittest.TestCase):
         self.browser.close_browser()
 
     def test_search_book_with_signin(self):
+        # Arrange
         self.home_page.search_book_flow(self.config["book_name1"])
         results_page = SearchResultsPage(self.driver)
         results_page.click_first_result()
         book_page = BookPage(self.driver)
+        # Act
         book_name_displayed = book_page.get_book_name()
+        # Assert
         self.assertEqual(self.config["book_name1"], book_name_displayed)
 
     def test_check_book_summary_with_signin(self):
+        # Arrange
         self.home_page.search_book_flow(self.config["book_name1"])
         results_page = SearchResultsPage(self.driver)
         results_page.click_first_result()
         book_page = BookPage(self.driver)
+        # Act & Assert
         self.assertTrue(book_page.is_book_summary_displayed())
 
     def test_check_book_availability_with_signin(self):
+        # Arrange
         self.home_page.search_book_flow(self.config["book_name1"])
         results_page = SearchResultsPage(self.driver)
         results_page.click_first_result()
         book_page = BookPage(self.driver)
+        # Act & Assert
         self.assertTrue(book_page.is_book_availability_displayed())

@@ -11,6 +11,7 @@ from logic.second_sign_in_page import SecondSignInPage
 
 class ListSaveTest(unittest.TestCase):
     def setUp(self):
+        # Arrange
         self.browser = BrowserWrapper()
         self.config = ConfigProvider.load_config_json()
         self.driver = self.browser.get_driver(self.config["url"])
@@ -32,15 +33,20 @@ class ListSaveTest(unittest.TestCase):
         self.browser.close_browser()
 
     def test_make_and_save_to_list(self):
+        # Arrange
         results_page = SearchResultsPage(self.driver)
+        # Act
         results_page.add_create_list_flow(self.config["list_name"], self.config["list description"])
         lists_page = ListsPage(self.driver)
         results_page.navigate_to_lists_flow()
+        # Assert
         self.assertEqual(lists_page.get_list_name_button(), self.config["list_name"])
 
     def test_check_if_book_in_list(self):
+        # Arrange
         results_page = SearchResultsPage(self.driver)
         results_page.add_create_list_flow(self.config["list_name"], self.config["list description"])
         lists_page = ListsPage(self.driver)
         results_page.navigate_to_lists_flow()
+        # Act & Assert
         self.assertEqual(lists_page.get_book_name(), self.config["book_name1"])

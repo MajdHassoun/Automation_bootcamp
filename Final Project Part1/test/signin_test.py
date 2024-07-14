@@ -8,6 +8,7 @@ from logic.second_sign_in_page import SecondSignInPage
 
 class SigninTest(unittest.TestCase):
     def setUp(self):
+        # Arrange
         self.browser = BrowserWrapper()
         self.config = ConfigProvider.load_config_json()
         self.driver = self.browser.get_driver(self.config["url"])
@@ -19,17 +20,23 @@ class SigninTest(unittest.TestCase):
         self.browser.close_browser()
 
     def test_valid_signin(self):
+        # Arrange
         self.home_page.click_sign_in()
         sign_in_page = FirstSignInPage(self.driver)
         sign_in_page.first_signin_flow(self.config["username"])
         sign_in_page2 = SecondSignInPage(self.driver)
+        # Act
         sign_in_page2.second_signin_flow(self.config["username"], self.config["password"])
+        # Assert
         self.assertTrue(self.home_page.is_hello_user_message_displayed())
 
     def test_invalid_signin(self):
+        # Arrange
         self.home_page.click_sign_in()
         sign_in_page = FirstSignInPage(self.driver)
         sign_in_page.first_signin_flow(self.config["username"])
         sign_in_page2 = SecondSignInPage(self.driver)
+        # Act
         sign_in_page2.second_signin_flow(self.config["username"], self.config["wrong_password"])
+        # Assert
         self.assertTrue(sign_in_page2.get_error_message())

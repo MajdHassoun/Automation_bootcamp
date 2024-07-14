@@ -11,6 +11,7 @@ from logic.second_sign_in_page import SecondSignInPage
 
 class ListDeleteTest(unittest.TestCase):
     def setUp(self):
+        # Arrange
         self.browser = BrowserWrapper()
         self.config = ConfigProvider.load_config_json()
         self.driver = self.browser.get_driver(self.config["url"])
@@ -28,11 +29,14 @@ class ListDeleteTest(unittest.TestCase):
         self.browser.close_browser()
 
     def test_delete_library(self):
+        # Arrange
         results_page = SearchResultsPage(self.driver)
         results_page.add_create_list_flow(self.config["list_name"], self.config["list description"])
         lists_page = ListsPage(self.driver)
         results_page.navigate_to_lists_flow()
         lists_page.enter_delete_page()
         delete_list_page = DeleteListPage(self.driver)
+        # Act
         delete_list_page.delete_list_flow()
+        # Assert
         self.assertTrue(delete_list_page.get_no_lists_found_message())

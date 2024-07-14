@@ -33,3 +33,10 @@
 # def println(list):
 
 
+# def g():
+#     return [1, 2, 3]
+#
+# def c():
+#     a = g()
+#     print(a)
+# c()

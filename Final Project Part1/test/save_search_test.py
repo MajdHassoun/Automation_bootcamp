@@ -11,6 +11,7 @@ from logic.base_page_app import BasePageApp
 
 class LibraryTest(unittest.TestCase):
     def setUp(self):
+        # Arrange
         self.browser = BrowserWrapper()
         self.config = ConfigProvider.load_config_json()
         self.driver = self.browser.get_driver(self.config["url"])
@@ -30,16 +31,19 @@ class LibraryTest(unittest.TestCase):
         self.browser.close_browser()
 
     def test_save_search(self):
+        # Arrange
         self.home_page.search_book_flow(self.config["book_name1"])
+        # Act
         self.results_page.click_save_search_button()
         self.results_page.click_confirm_save_search_button()
         self.base_page_app.navigate_to_saved_searches_flow()
+        # Assert
         self.assertTrue(self.saved_searches_page.get_search_name())
-        # added a time sleep in line's 38 logic page
 
     def test_delete_saved_search(self):
         self.base_page_app.navigate_to_saved_searches_flow()
+        # Act
         self.saved_searches_page.click_saved_searches_checkbox()
         self.saved_searches_page.click_delete_search_button()
+        # Assert
         self.assertTrue(self.saved_searches_page.get_no_saved_searches_message())
-        # select checkbox button not working

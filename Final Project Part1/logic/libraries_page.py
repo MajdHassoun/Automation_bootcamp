@@ -2,6 +2,7 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from logic.base_page_app import BasePageApp
+from logic.utils import Utils
 
 
 class LibrariesPage(BasePageApp):
@@ -70,17 +71,11 @@ class LibrariesPage(BasePageApp):
         """
         Checks if the smallest distance is the first that is being displayed.
 
-        Retrieves the list of distances, converts them to float, and compares the expected distance
-        with the smallest distance in the list.
 
         :return: True if the minimum distance is the smallest, False otherwise.
         """
-        distances_list = []
-        old_list = [dis.text for dis in self.get_libraries_distance()]
-        for distance in old_list:
-            split_result = distance.split()
-            distance_number = float(split_result[0])
-            distances_list.append(distance_number)
+        strings_list = self.get_libraries_distance()
+        distances_list = Utils.return_distance_from_string(strings_list)
         minimum_distance = distances_list[0]
         smallest_list_distance = min(distances_list)
         print(minimum_distance, smallest_list_distance)

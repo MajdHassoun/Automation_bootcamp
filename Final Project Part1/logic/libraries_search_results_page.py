@@ -1,3 +1,5 @@
+import time
+
 from selenium.webdriver.common.by import By
 from logic.base_page_app import BasePageApp
 from selenium.webdriver.support.wait import WebDriverWait
@@ -36,7 +38,9 @@ class LibrariesSearchResultsPage(BasePageApp):
         """
         Click the button to save the library to favorites.
         """
-        favorite_button = WebDriverWait(self._driver, 15).until(
-            EC.visibility_of_element_located((By.XPATH, self.FAVORITE_LIBRARY_BUTTON))
-        )
-        favorite_button.click()
+        # favorite_button = WebDriverWait(self._driver, 15).until(
+        #     EC.visibility_of_element_located((By.XPATH, self.FAVORITE_LIBRARY_BUTTON))
+        # )
+        time.sleep(4)
+        self._driver.find_element(By.XPATH, self.FAVORITE_LIBRARY_BUTTON).click()
+        time.sleep(5)
