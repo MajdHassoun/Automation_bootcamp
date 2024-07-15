@@ -33,4 +33,4 @@ class LibraryTest(unittest.TestCase):
         time.sleep(8)  # for presentation
         # Act & Assert
         self.assertTrue(libraries_page.check_results_distance())
-        logging.info("Test test_return_smallest_distance COMPLETED")
+        logging.info("Test test_return_smallest_distance COMPLETED \n \n")

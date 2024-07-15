@@ -8,3 +8,36 @@
 15-07-2024 - 14:53:19: INFO: Test test_return_smallest_distance STARTED
 15-07-2024 - 14:53:47: INFO: Test test_return_smallest_distance STARTED
 15-07-2024 - 14:53:56: INFO: Test test_return_smallest_distance COMPLETED
+15-07-2024 - 15:25:33: INFO: Test test_return_smallest_distance STARTED
+15-07-2024 - 15:25:42: INFO: Test test_return_smallest_distance COMPLETED
+15-07-2024 - 19:11:45: INFO: Test test_return_smallest_distance STARTED
+15-07-2024 - 19:11:54: INFO: Test test_return_smallest_distance COMPLETED
+15-07-2024 - 19:30:58: INFO: Test test_return_smallest_distance STARTED
+15-07-2024 - 19:31:06: INFO: Test test_return_smallest_distance COMPLETED
+15-07-2024 - 19:35:08: INFO: Test test_return_smallest_distance STARTED
+15-07-2024 - 19:35:16: INFO: Test test_return_smallest_distance COMPLETED 
+ 
+
+15-07-2024 - 19:35:31: INFO: Test test_return_smallest_distance STARTED
+15-07-2024 - 19:35:40: INFO: Test test_return_smallest_distance COMPLETED 
+ 
+
+15-07-2024 - 19:37:06: INFO: Test test_return_smallest_distance STARTED
+15-07-2024 - 19:37:15: INFO: Test test_return_smallest_distance COMPLETED 
+ 
+
+15-07-2024 - 19:39:15: INFO: Test test_make_and_save_to_list STARTED
+15-07-2024 - 19:39:27: INFO: Test test_make_and_save_to_list ENDED
+15-07-2024 - 19:40:33: INFO: Test test_find_and_favorite_library STARTED
+15-07-2024 - 19:41:34: INFO: Test test_find_and_favorite_library STARTED
+15-07-2024 - 19:41:50: INFO: Test test_find_and_favorite_library ENDED
+15-07-2024 - 19:42:13: INFO: Test test_find_and_unfavorite_library STARTED
+15-07-2024 - 19:42:23: INFO: Test test_find_and_unfavorite_library ENDED
+15-07-2024 - 19:42:53: INFO: Test test_return_smallest_distance STARTED
+15-07-2024 - 19:43:02: INFO: Test test_return_smallest_distance COMPLETED 
+ 
+
+15-07-2024 - 19:44:03: INFO: Test test_make_and_save_to_list STARTED
+15-07-2024 - 19:44:14: INFO: Test test_make_and_save_to_list ENDED
+15-07-2024 - 19:45:02: INFO: Test test_find_and_favorite_library STARTED
+15-07-2024 - 19:45:19: INFO: Test test_find_and_favorite_library ENDED
