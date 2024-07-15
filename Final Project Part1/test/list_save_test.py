@@ -7,6 +7,8 @@ from logic.first_sign_in_page import FirstSignInPage
 from logic.lists_page import ListsPage
 from logic.search_results_page import SearchResultsPage
 from logic.second_sign_in_page import SecondSignInPage
+import logging
+from infra.logging_setup import logger_setup
 
 
 class ListSaveTest(unittest.TestCase):
@@ -33,6 +35,9 @@ class ListSaveTest(unittest.TestCase):
         self.browser.close_browser()
 
     def test_make_and_save_to_list(self):
+        """ This test searches for a book, clicks on "Save to list" button, creates the list,
+        and make sure that the list is present in "Lists" page """
+        logging.info("Test test_make_and_save_to_list STARTED")
         # Arrange
         results_page = SearchResultsPage(self.driver)
         # Act
@@ -41,8 +46,12 @@ class ListSaveTest(unittest.TestCase):
         results_page.navigate_to_lists_flow()
         # Assert
         self.assertEqual(lists_page.get_list_name_button(), self.config["list_name"])
+        logging.info("Test test_make_and_save_to_list ENDED")
 
     def test_check_if_book_in_list(self):
+        """ This test searches for a book, clicks on "Save to list" button, creates the list,
+                and make sure that the book is present in the created list in "Lists" page """
+        logging.info("Test test_check_if_book_in_list STARTED")
         # Arrange
         results_page = SearchResultsPage(self.driver)
         results_page.add_create_list_flow(self.config["list_name"], self.config["list description"])
@@ -50,3 +59,4 @@ class ListSaveTest(unittest.TestCase):
         results_page.navigate_to_lists_flow()
         # Act & Assert
         self.assertEqual(lists_page.get_book_name(), self.config["book_name1"])
+        logging.info("Test test_check_if_book_in_list ENDED")

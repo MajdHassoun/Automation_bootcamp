@@ -4,6 +4,8 @@ from infra.config_provider import ConfigProvider
 from logic.home_page import HomePage
 from logic.first_sign_in_page import FirstSignInPage
 from logic.second_sign_in_page import SecondSignInPage
+import logging
+from infra.logging_setup import logger_setup
 
 
 class SigninTest(unittest.TestCase):
@@ -20,6 +22,8 @@ class SigninTest(unittest.TestCase):
         self.browser.close_browser()
 
     def test_valid_signin(self):
+        """This test inserts valid sign in data and checks the result"""
+        logging.info("Test test_valid_signin STARTED")
         # Arrange
         self.home_page.click_sign_in()
         sign_in_page = FirstSignInPage(self.driver)
@@ -29,8 +33,11 @@ class SigninTest(unittest.TestCase):
         sign_in_page2.second_signin_flow(self.config["username"], self.config["password"])
         # Assert
         self.assertTrue(self.home_page.is_hello_user_message_displayed())
+        logging.info("Test test_valid_signin ENDED")
 
     def test_invalid_signin(self):
+        """This test inserts valid sign in data and checks the result"""
+        logging.info("Test test_invalid_signin STARTED")
         # Arrange
         self.home_page.click_sign_in()
         sign_in_page = FirstSignInPage(self.driver)
@@ -40,3 +47,4 @@ class SigninTest(unittest.TestCase):
         sign_in_page2.second_signin_flow(self.config["username"], self.config["wrong_password"])
         # Assert
         self.assertTrue(sign_in_page2.get_error_message())
+        logging.info("Test test_invalid_signin ENDED")

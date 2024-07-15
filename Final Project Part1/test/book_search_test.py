@@ -3,9 +3,9 @@ from infra.browser_wrapper import BrowserWrapper
 from infra.config_provider import ConfigProvider
 from logic.book_page import BookPage
 from logic.home_page import HomePage
-from logic.first_sign_in_page import FirstSignInPage
 from logic.search_results_page import SearchResultsPage
-from logic.second_sign_in_page import SecondSignInPage
+import logging
+from infra.logging_setup import logger_setup
 
 
 class BookSearchTest(unittest.TestCase):
@@ -17,16 +17,14 @@ class BookSearchTest(unittest.TestCase):
         self.home_page = HomePage(self.driver)
         self.home_page.refresh_page()
         self.home_page.click_accept_cookies()
-        self.home_page.click_sign_in()
-        first_sign_in = FirstSignInPage(self.driver)
-        first_sign_in.first_signin_flow(self.config["username"])
-        second_sign_in = SecondSignInPage(self.driver)
-        second_sign_in.second_signin_flow(self.config["username"], self.config["password"])
 
     def tearDown(self):
         self.browser.close_browser()
 
-    def test_search_book_with_signin(self):
+    def test_search_book(self):
+        """ This test searches for a book and checks if the book title is
+        present in the book's page"""
+        logging.info("Test test_search_book STARTED")
         # Arrange
         self.home_page.search_book_flow(self.config["book_name1"])
         results_page = SearchResultsPage(self.driver)
@@ -36,8 +34,12 @@ class BookSearchTest(unittest.TestCase):
         book_name_displayed = book_page.get_book_name()
         # Assert
         self.assertEqual(self.config["book_name1"], book_name_displayed)
+        logging.info("Test test_search_book ENDED")
 
-    def test_check_book_summary_with_signin(self):
+    def test_check_book_summary(self):
+        """ This test searches for a book and checks if the book summary is
+                present in the book's page"""
+        logging.info("Test test_check_book_summary STARTED")
         # Arrange
         self.home_page.search_book_flow(self.config["book_name1"])
         results_page = SearchResultsPage(self.driver)
@@ -45,8 +47,12 @@ class BookSearchTest(unittest.TestCase):
         book_page = BookPage(self.driver)
         # Act & Assert
         self.assertTrue(book_page.is_book_summary_displayed())
+        logging.info("Test test_check_book_summary ENDED")
 
-    def test_check_book_availability_with_signin(self):
+    def test_check_book_availability(self):
+        """ This test searches for a book and checks if the book availability is
+                present in the book's page"""
+        logging.info("Test test_check_book_availability STARTED")
         # Arrange
         self.home_page.search_book_flow(self.config["book_name1"])
         results_page = SearchResultsPage(self.driver)
@@ -54,3 +60,4 @@ class BookSearchTest(unittest.TestCase):
         book_page = BookPage(self.driver)
         # Act & Assert
         self.assertTrue(book_page.is_book_availability_displayed())
+        logging.info("Test test_check_book_availability ENDED")

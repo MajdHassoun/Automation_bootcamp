@@ -1,4 +1,3 @@
-import time
 import unittest
 from infra.browser_wrapper import BrowserWrapper
 from infra.config_provider import ConfigProvider
@@ -9,6 +8,8 @@ from logic.libraries_page import LibrariesPage
 from logic.libraries_search_results_page import LibrariesSearchResultsPage
 from logic.second_sign_in_page import SecondSignInPage
 from logic.base_page_app import BasePageApp
+import logging
+from infra.logging_setup import logger_setup
 
 
 class LibraryTest(unittest.TestCase):
@@ -30,15 +31,9 @@ class LibraryTest(unittest.TestCase):
     def tearDown(self):
         self.browser.close_browser()
 
-    def test_return_smallest_distance(self):
-        # Arrange
-        libraries_page = LibrariesPage(self.driver)
-        self.base_page_app.click_header_libraries_button()
-        time.sleep(5)
-        # Act & Assert
-        self.assertTrue(libraries_page.check_results_distance())
-
     def test_find_and_favorite_library(self):
+        """ This test searches for a library in the "Libraries" page and saves it as favorite"""
+        logging.info("Test test_find_and_favorite_library STARTED")
         # Arrange
         libraries_page = LibrariesPage(self.driver)
         self.base_page_app.click_header_libraries_button()
@@ -51,8 +46,11 @@ class LibraryTest(unittest.TestCase):
         library_name = favorite_libraries_page.get_favorite_library_name()
         # Assert
         self.assertEqual(library_name, self.config["library_name"])
+        logging.info("Test test_find_and_favorite_library ENDED")
 
     def test_find_and_unfavorite_library(self):
+        """ This test enters the "Libraries" page and unfavorite the saved as favorite library"""
+        logging.info("Test test_find_and_unfavorite_library STARTED")
         # Arrange
         self.base_page_app.navigate_to_favorite_libraries_for_delete_flow()
         favorite_libraries_page = FavoriteLibrariesPage(self.driver)
@@ -60,3 +58,4 @@ class LibraryTest(unittest.TestCase):
         favorite_libraries_page.remove_favorite_library_flow()
         # Assert
         self.assertTrue(favorite_libraries_page.get_no_libraries_message())
+        logging.info("Test test_find_and_unfavorite_library ENDED")

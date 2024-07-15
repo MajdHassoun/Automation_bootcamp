@@ -7,6 +7,8 @@ from logic.saved_searches_page import SavedSearchesPage
 from logic.search_results_page import SearchResultsPage
 from logic.second_sign_in_page import SecondSignInPage
 from logic.base_page_app import BasePageApp
+import logging
+from infra.logging_setup import logger_setup
 
 
 class LibraryTest(unittest.TestCase):
@@ -31,6 +33,9 @@ class LibraryTest(unittest.TestCase):
         self.browser.close_browser()
 
     def test_save_search(self):
+        """ This test inserts a search, click on "Save Search" button and checks if the search
+        has been saved in the "Saved Searches" page"""
+        logging.info("Test test_save_search STARTED")
         # Arrange
         self.home_page.search_book_flow(self.config["book_name1"])
         # Act
@@ -39,11 +44,15 @@ class LibraryTest(unittest.TestCase):
         self.base_page_app.navigate_to_saved_searches_flow()
         # Assert
         self.assertTrue(self.saved_searches_page.get_search_name())
+        logging.info("Test test_save_search ENDED")
 
     def test_delete_saved_search(self):
+        """ This test deletes a saved search from the "Saved Searches" page"""
+        logging.info("Test test_delete_saved_search STARTED")
         self.base_page_app.navigate_to_saved_searches_flow()
         # Act
         self.saved_searches_page.click_saved_searches_checkbox()
         self.saved_searches_page.click_delete_search_button()
         # Assert
         self.assertTrue(self.saved_searches_page.get_no_saved_searches_message())
+        logging.info("Test test_delete_saved_search ENDED")

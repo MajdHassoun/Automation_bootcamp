@@ -7,6 +7,8 @@ from logic.first_sign_in_page import FirstSignInPage
 from logic.lists_page import ListsPage
 from logic.search_results_page import SearchResultsPage
 from logic.second_sign_in_page import SecondSignInPage
+import logging
+from infra.logging_setup import logger_setup
 
 
 class ListDeleteTest(unittest.TestCase):
@@ -28,7 +30,9 @@ class ListDeleteTest(unittest.TestCase):
     def tearDown(self):
         self.browser.close_browser()
 
-    def test_delete_library(self):
+    def test_delete_list(self):
+        """ This test deletes a list that has been created from the "Lists" page """
+        logging.info("Test test_delete_library STARTED")
         # Arrange
         results_page = SearchResultsPage(self.driver)
         results_page.add_create_list_flow(self.config["list_name"], self.config["list description"])
@@ -40,3 +44,4 @@ class ListDeleteTest(unittest.TestCase):
         delete_list_page.delete_list_flow()
         # Assert
         self.assertTrue(delete_list_page.get_no_lists_found_message())
+        logging.info("Test test_delete_library ENDED")

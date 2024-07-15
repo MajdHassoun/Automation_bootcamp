@@ -31,8 +31,8 @@ class Utils:
                 """
         distances_list = []
         old_list = [dis.text for dis in lib_distance]
-        for distance in old_list:
-            split_result = distance.split()
+        for distance_str in old_list:
+            split_result = distance_str.split()
             distance_number = float(split_result[0])
             distances_list.append(distance_number)
         return distances_list
