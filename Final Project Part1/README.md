@@ -10,7 +10,4 @@ The project structure consists of Infra, logic and test files that include the w
 Also, a log file is included in the file to track the testing process and identify vulnerable points and bugs in our code.
 
 
-## Lessons Learned
-
-What did you learn while building this project? What challenges did you face and how did you overcome them?
 
