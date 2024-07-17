@@ -27,10 +27,12 @@ class LibraryTest(unittest.TestCase):
         """This test checks if the showed libraries are sorted according to the distance from the
         user's location """
         logging.info("Test test_return_smallest_distance STARTED")
+
         # Arrange
         libraries_page = LibrariesPage(self.driver)
         self.base_page_app.click_header_libraries_button()
-        time.sleep(8)  # for presentation
+        time.sleep(10)  # for presentation
+
         # Act & Assert
         self.assertTrue(libraries_page.check_results_distance())
         logging.info("Test test_return_smallest_distance COMPLETED \n \n")

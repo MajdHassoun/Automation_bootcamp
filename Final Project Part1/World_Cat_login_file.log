@@ -41,3 +41,33 @@
 15-07-2024 - 19:44:14: INFO: Test test_make_and_save_to_list ENDED
 15-07-2024 - 19:45:02: INFO: Test test_find_and_favorite_library STARTED
 15-07-2024 - 19:45:19: INFO: Test test_find_and_favorite_library ENDED
+16-07-2024 - 08:40:27: INFO: Test test_return_smallest_distance STARTED
+16-07-2024 - 08:40:35: INFO: Test test_return_smallest_distance COMPLETED 
+ 
+
+16-07-2024 - 10:21:06: INFO: Test test_return_smallest_distance STARTED
+16-07-2024 - 10:21:15: INFO: Test test_return_smallest_distance COMPLETED 
+ 
+
+16-07-2024 - 10:21:49: INFO: Test test_return_smallest_distance STARTED
+16-07-2024 - 10:21:58: INFO: Test test_return_smallest_distance COMPLETED 
+ 
+
+16-07-2024 - 10:32:53: INFO: Test test_make_and_save_to_list STARTED
+16-07-2024 - 10:33:05: INFO: Test test_make_and_save_to_list ENDED
+16-07-2024 - 10:43:58: INFO: Test test_return_smallest_distance STARTED
+16-07-2024 - 10:44:06: INFO: Test test_return_smallest_distance COMPLETED 
+ 
+
+16-07-2024 - 10:52:20: INFO: Test test_return_smallest_distance STARTED
+16-07-2024 - 10:52:31: INFO: Test test_return_smallest_distance COMPLETED 
+ 
+
+16-07-2024 - 10:58:17: INFO: Test test_return_smallest_distance STARTED
+16-07-2024 - 10:58:28: INFO: Test test_return_smallest_distance COMPLETED 
+ 
+
+16-07-2024 - 12:02:47: INFO: Test test_return_smallest_distance STARTED
+16-07-2024 - 12:02:58: INFO: Test test_return_smallest_distance COMPLETED 
+ 
+
