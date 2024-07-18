@@ -1,0 +1,21 @@
+{
+  "url": "https://twitter154.p.rapidapi.com",
+  "header1": {
+	"x-rapidapi-key": "2f192e368bmsh4ffd04cadd80295p1a5c96jsndbcab14d627c",
+	"x-rapidapi-host": "twitter154.p.rapidapi.com"
+},
+  "header_post_details": {
+	"x-rapidapi-key": "2f192e368bmsh4ffd04cadd80295p1a5c96jsndbcab14d627c",
+	"x-rapidapi-host": "twitter154.p.rapidapi.com",
+	"Content-Type": "application/json"
+},
+  "username": "omarmhaimdat",
+  "user_id1": "96479162",
+
+  "header2": {
+	"x-rapidapi-key": "6b80a3c378msh86186511f31460fp11ee65jsn3ba554bbc966",
+	"x-rapidapi-host": "twitter154.p.rapidapi.com"
+},
+  "user_id2":"44196397",
+  "limit":"20"
+}
