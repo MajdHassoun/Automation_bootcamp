@@ -13,13 +13,17 @@ class TestAPIUsersLikes(unittest.TestCase):
         self.config = ConfigProvider.load_config_json()
         self.api_request = APIWrapper()
         self.url = self.config["url"]
-        self.header = self.config["header2"]
+        self.header = self.config["header"]
         self.username = self.config["username"]
         self.user_id = self.config["user_id2"]
         self.limit = self.config["limit"]
+        self.detail_response = self.config["detail"]
 
-
-    def test_users_like(self):
-
-
-
+    def test_get_users_like(self):
+        users_likes = APIUsersLikes(self.api_request)
+        users_likes_obj = users_likes.get_users_likes(self.url, self.header,
+                                                      self.limit, self.user_id)
+        users_likes_body = users_likes_obj.json()
+        self.assertEqual(self.detail_response, users_likes_body["detail"])
+        self.assertEqual(users_likes_obj.status_code, 200)
+        self.assertTrue(users_likes_obj.ok)

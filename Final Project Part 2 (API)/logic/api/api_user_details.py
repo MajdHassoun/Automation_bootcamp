@@ -11,8 +11,8 @@ class APIUserDetails:
 
     def get_user_details(self):
         url = f"{self.config['url']}/user/details?username={self.config['username']}&user_id={self.config['user_id1']}"
-        return self._request.get_request(url, headers=self.config["header1"])
+        return self._request.get_request(url, headers=self.config["header"])
 
     def post_user_details(self, user_name_details):
-        return self._request.post_request(f'{self.config["url"]}/user/details', self.config["header_post_details"],
+        return self._request.post_request(f'{self.config["url"]}/user/details', self.config["header_post"],
                                           json.dumps(user_name_details))

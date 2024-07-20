@@ -36,6 +36,3 @@ class TestAPIUserDetails(unittest.TestCase):
         user_details_obj = user_details.post_user_details(user_details_body.to_dict())
         self.assertEqual(user_details_obj.status_code, 200)
         self.assertTrue(user_details_obj.ok)
-        time.sleep(2)
-        print(user_details.get_user_details().json())
-        print(user_details_body.to_dict())
