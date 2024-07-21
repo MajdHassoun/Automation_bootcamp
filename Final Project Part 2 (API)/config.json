@@ -16,7 +16,7 @@
   "detail": "Likes for user id = 44196397 not found",
   "tweet_id": "1349129669258448897",
   "creation_date": "Wed Jul 17 16:21:05 +0000 2024",
-  "search_tweet_id": "1812010591629758629",
+  "search_tweet_id": "1812311805685031073",
   "search_post_body" : {
 	"query": "#python",
 	"limit": 5,
@@ -25,6 +25,14 @@
 	"min_likes": 20,
 	"min_retweets": 20,
 	"start_date": "2022-01-01"
-}
+  },
+  "follower_username": "OFettal",
+  "tweet_details_id":"1517995317697916928",
+  "woeid" : 1,
+  "trend_name" : "Jake Paul",
+  "favorites_tweet_id" :"1349129669258448897",
+
+
+  "user_favorites_response" : "Retweets for tweet id = 1349129669258448897 not found"
 
 }

@@ -32,7 +32,9 @@ class TestAPIUserDetails(unittest.TestCase):
 
     def test_post_user_details(self):
         user_details = APIUserDetails(self.api_request)
-        user_details_body = UserDetails(self.config['username'], self.config['user_id1'])
-        user_details_obj = user_details.post_user_details(user_details_body.to_dict())
+        user_details_sent_body = UserDetails(self.config['username'], self.config['user_id1'])
+        user_details_obj = user_details.post_user_details(user_details_sent_body)
+        results = user_details_obj.json()
+        self.assertEqual(self.config["empty_search_result"], results)
         self.assertEqual(user_details_obj.status_code, 200)
         self.assertTrue(user_details_obj.ok)

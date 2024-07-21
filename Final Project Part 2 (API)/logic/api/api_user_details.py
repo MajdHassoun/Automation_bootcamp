@@ -1,5 +1,3 @@
-import json
-
 from infra.api.api_wrapper import APIWrapper
 from infra.api.config_provider import ConfigProvider
 
@@ -15,4 +13,4 @@ class APIUserDetails:
 
     def post_user_details(self, user_name_details):
         return self._request.post_request(f'{self.config["url"]}/user/details', self.config["header_post"],
-                                          json.dumps(user_name_details))
+                                          user_name_details)

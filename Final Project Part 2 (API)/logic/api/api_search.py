@@ -1,5 +1,3 @@
-import json
-
 from infra.api.api_wrapper import APIWrapper
 from infra.api.config_provider import ConfigProvider
 
@@ -15,4 +13,4 @@ class APISearch:
 
     def post_search(self, search_body):
         return self._request.post_request(f'{self.config["url"]}/search/search', self.config["header_post"],
-                                          json.dumps(search_body))
+                                          search_body)
