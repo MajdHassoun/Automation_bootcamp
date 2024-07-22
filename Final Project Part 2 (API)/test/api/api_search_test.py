@@ -29,7 +29,6 @@ class TestAPISearch(unittest.TestCase):
         search = APISearch(self.api_request)
         search_body = self.config["search_post_body"]
         search_obj = search.post_search(search_body)
-        search_result = search_obj.json()
         self.assertEqual(search_obj.status_code, 200)
         self.assertTrue(search_obj.ok)
 

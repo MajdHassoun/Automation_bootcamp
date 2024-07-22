@@ -17,7 +17,7 @@ class TestFollowers(unittest.TestCase):
 
     def test_get_tweet_details(self):
         followers = APITweetDetails(self.api_request)
-        tweet_details_obj = followers.get_tweet_details()
+        tweet_details_obj = followers.get_tweet_details(self.config['tweet_details_id'])
         tweet_details_body = tweet_details_obj.json()
         tweet_details_results = tweet_details_body["tweet_id"]
         self.assertEqual(tweet_details_results, self.tweet_details_id)

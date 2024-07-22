@@ -15,9 +15,9 @@ class TestFollowers(unittest.TestCase):
         self.url = self.config["url"]
         self.trend_name = self.config["trend_name"]
 
-    def test_get_followers(self):
+    def test_get_trends_near_location(self):
         trend = APIGetTrendsNearLocation(self.api_request)
-        trend_obj = trend.get_trends_near_location()
+        trend_obj = trend.get_trends_near_location(self.config['woeid'])
         trend_body = trend_obj.json()
         trends = trend_body[0]
         trend_list = trends["trends"]

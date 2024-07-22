@@ -7,8 +7,8 @@ class APIUserDetails:
         self._request = request
         self.config = ConfigProvider.load_config_json()
 
-    def get_user_details(self):
-        url = f"{self.config['url']}/user/details?username={self.config['username']}&user_id={self.config['user_id1']}"
+    def get_user_details(self, username, userid):
+        url = f"{self.config['url']}/user/details?username={username}&user_id={userid}"
         return self._request.get_request(url, headers=self.config["header"])
 
     def post_user_details(self, user_name_details):

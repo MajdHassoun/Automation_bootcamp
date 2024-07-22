@@ -7,6 +7,6 @@ class APIUsersFavorites:
         self._request = request
         self.config = ConfigProvider.load_config_json()
 
-    def get_users_favorites(self, url, headers):
-        url = f"{url}/tweet/favoriters?tweet_id={self.config['favorites_tweet_id']}"
+    def get_users_favorites(self, url, headers, favorites_tweet_id):
+        url = f"{url}/tweet/favoriters?tweet_id={favorites_tweet_id}"
         return self._request.get_request(url, headers=headers)

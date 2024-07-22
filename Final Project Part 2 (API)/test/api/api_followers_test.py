@@ -17,7 +17,7 @@ class TestFollowers(unittest.TestCase):
 
     def test_get_followers(self):
         followers = APIFollowers(self.api_request)
-        followers_obj = followers.get_followers()
+        followers_obj = followers.get_followers(self.config["followers_user_id"])
         followers_body = followers_obj.json()
         followers_results = followers_body["results"]
         follower_name = followers_results[0]["username"]

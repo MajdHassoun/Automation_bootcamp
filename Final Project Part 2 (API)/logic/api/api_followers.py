@@ -7,6 +7,6 @@ class APIFollowers:
         self._request = request
         self.config = ConfigProvider.load_config_json()
 
-    def get_followers(self):
-        url = f"{self.config['url']}/user/followers?user_id=96479162&limit=10"
+    def get_followers(self, user_id):
+        url = f"{self.config['url']}/user/followers?{user_id}"
         return self._request.get_request(url, headers=self.config["header"])

@@ -1,14 +1,14 @@
 {
   "url": "https://twitter154.p.rapidapi.com",
   "header": {
-    "x-rapidapi-key": "6b80a3c378msh86186511f31460fp11ee65jsn3ba554bbc966",
-    "x-rapidapi-host": "twitter154.p.rapidapi.com"
-  },
+	"x-rapidapi-key": "2f192e368bmsh4ffd04cadd80295p1a5c96jsndbcab14d627c",
+	"x-rapidapi-host": "twitter154.p.rapidapi.com"
+},
   "header_post": {
-    "x-rapidapi-key": "6b80a3c378msh86186511f31460fp11ee65jsn3ba554bbc966",
-    "x-rapidapi-host": "twitter154.p.rapidapi.com",
-    "Content-Type": "application/json"
-  },
+	"x-rapidapi-key": "2f192e368bmsh4ffd04cadd80295p1a5c96jsndbcab14d627c",
+	"x-rapidapi-host": "twitter154.p.rapidapi.com",
+	"Content-Type": "application/json"
+},
   "username": "omarmhaimdat",
   "user_id1": "96479162",
   "user_id2": "44196397",
@@ -33,6 +33,8 @@
   "favorites_tweet_id" :"1349129669258448897",
 
 
-  "user_favorites_response" : "Retweets for tweet id = 1349129669258448897 not found"
+  "user_favorites_response" : "Retweets for tweet id = 1349129669258448897 not found",
+  "fake_user_favorites_response" : "Go Away",
+  "followers_user_id" : "96479162&limit=10"
 
 }

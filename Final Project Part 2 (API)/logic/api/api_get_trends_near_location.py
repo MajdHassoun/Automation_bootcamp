@@ -7,6 +7,6 @@ class APIGetTrendsNearLocation:
         self._request = request
         self.config = ConfigProvider.load_config_json()
 
-    def get_trends_near_location(self):
-        url = f"{self.config['url']}/trends/?woeid={self.config['woeid']}"
+    def get_trends_near_location(self, woied):
+        url = f"{self.config['url']}/trends/?woeid={woied}"
         return self._request.get_request(url, headers=self.config["header"])
