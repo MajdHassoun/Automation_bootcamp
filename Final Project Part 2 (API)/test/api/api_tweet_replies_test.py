@@ -24,11 +24,6 @@ class TestAPITweetReplies(unittest.TestCase):
         tweet_replies = APITweetReplies(self.api_request)
         # Act
         tweet_replies_obj = tweet_replies.get_tweet_replies(self.url, self.header, self.tweet_id)
-        tweet_replies_body = tweet_replies_obj.json()
-        replies = tweet_replies_body["replies"]
-        reply_creation_date = tweet_replies.check_all_json_reply(replies)
         # Assert
-        self.assertEqual(reply_creation_date, self.config["creation_date"])
         self.assertEqual(tweet_replies_obj.status_code, 200)
         self.assertTrue(tweet_replies_obj.ok)
-

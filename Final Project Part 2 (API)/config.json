@@ -1,20 +1,17 @@
 {
   "url": "https://twitter154.p.rapidapi.com",
   "header": {
-	"x-rapidapi-key": "2f192e368bmsh4ffd04cadd80295p1a5c96jsndbcab14d627c",
-	"x-rapidapi-host": "twitter154.p.rapidapi.com"
-},
-  "header_post": {
-	"x-rapidapi-key": "2f192e368bmsh4ffd04cadd80295p1a5c96jsndbcab14d627c",
+	"x-rapidapi-key": "5fbdc4efc4msh10d7ae6478a8ce9p18f618jsndaa46e0fa9cb",
 	"x-rapidapi-host": "twitter154.p.rapidapi.com",
 	"Content-Type": "application/json"
 },
+
   "username": "omarmhaimdat",
   "user_id1": "96479162",
   "user_id2": "44196397",
   "limit": "20",
   "detail": "Likes for user id = 44196397 not found",
-  "tweet_id": "1349129669258448897",
+  "tweet_id": "1651463042331230208",
   "creation_date": "Tue Jan 12 23:03:08 +0000 2021",
   "search_tweet_id": "1812893401181827267",
   "search_post_body" : {
@@ -28,8 +25,8 @@
   },
   "follower_username": "OFettal",
   "tweet_details_id":"1517995317697916928",
-  "woeid" : 1,
-  "trend_name" : "LINGORM TSOU EP5",
+  "woeid" : 3534,
+  "trend_location_name" : "Montreal",
   "favorites_tweet_id" :"1349129669258448897",
 
 

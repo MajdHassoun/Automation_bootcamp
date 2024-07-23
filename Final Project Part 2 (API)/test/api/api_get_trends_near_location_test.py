@@ -14,7 +14,7 @@ class TestFollowers(unittest.TestCase):
         self.config = ConfigProvider.load_config_json()
         self.api_request = APIWrapper()
         self.url = self.config["url"]
-        self.trend_name = self.config["trend_name"]
+        self.trend_location_name = self.config["trend_location_name"]
 
     def test_get_trends_near_location(self):
         """ checks the status code and if the test passed or not,
@@ -24,10 +24,10 @@ class TestFollowers(unittest.TestCase):
         # Act
         trend_obj = trend.get_trends_near_location(self.config['woeid'])
         trend_body = trend_obj.json()
-        trends = trend_body[0]
-        trend_list = trends["trends"]
-        trend_name = trend.check_all_json_trend(trend_list)
+        trends_location = trend_body[0]
+        trend_list = trends_location["locations"]
+        location_name = trend_list[0]
         # Assert
-        self.assertEqual(trend_name, self.trend_name)
+        self.assertEqual(location_name['name'], self.trend_location_name)
         self.assertEqual(trend_obj.status_code, 200)
         self.assertTrue(trend_obj.ok)

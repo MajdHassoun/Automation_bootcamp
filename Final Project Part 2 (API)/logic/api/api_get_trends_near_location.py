@@ -30,8 +30,3 @@ class APIGetTrendsNearLocation:
         url = f"{self.config['url']}/trends/?woeid={woied}"
         return self._request.get_request(url, headers=self.config["header"])
 
-    def check_all_json_trend(self, trend_list):
-        for i in range(len(trend_list)):
-            trend_name = trend_list[i]["name"]
-            if trend_name == self.config["trend_name"]:
-                return trend_name

@@ -32,8 +32,3 @@ class APITweetReplies:
         url = f"{url}/tweet/replies?tweet_id={tweet_id}"
         return self._request.get_request(url, headers=headers)
 
-    def check_all_json_reply(self, replies):
-        for i in range(len(replies)):
-            reply_date = replies[i]["creation_date"]
-            if reply_date == self.config["creation_date"]:
-                return reply_date

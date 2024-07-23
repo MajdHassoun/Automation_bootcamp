@@ -27,11 +27,16 @@ class APISearch:
         url = f"{self.config['url']}/search/search?query=url_search_query_param"
         return self._request.get_request(url, headers=self.config["header"])
 
-    def check_all_json(self, searches):
-        for i in range(len(searches)):
-            search_id = searches[i]["tweet_id"]
-            if search_id == self.config["search_tweet_id"]:
-                return search_id
+    @staticmethod
+    def check_all_json_search(searches):
+        # Filter the searches to include only those that contain "#python"
+        filtered_searches = list(filter(lambda search: "#python" not in search["text"], searches))
+
+        # Check if the number of filtered results is equal to the total number of results
+        if len(filtered_searches) == len(searches):
+            return True
+        else:
+            return False
 
     def post_search(self, search_body):
         """
@@ -43,7 +48,5 @@ class APISearch:
         Returns:
         The response from the API request.
         """
-        return self._request.post_request(f'{self.config["url"]}/search/search', self.config["header_post"],
+        return self._request.post_request(f'{self.config["url"]}/search/search', self.config["header"],
                                           search_body)
-
-

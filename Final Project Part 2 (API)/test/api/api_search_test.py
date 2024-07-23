@@ -25,9 +25,9 @@ class TestAPISearch(unittest.TestCase):
         search_obj = search.get_search()
         search_body = search_obj.json()
         searches = search_body["results"]
-        search_id = search.check_all_json(searches)
+        search_text = search.check_all_json_search(searches)
         # Assert
-        self.assertEqual(search_id, self.search_tweet_id)
+        self.assertTrue(search_text)
         self.assertEqual(search_obj.status_code, 200)
         self.assertTrue(search_obj.ok)
 

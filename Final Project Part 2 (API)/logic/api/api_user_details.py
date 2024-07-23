@@ -43,6 +43,6 @@ class APIUserDetails:
         """
         return self._request.post_request(
             f'{self.config["url"]}/user/details',
-            self.config["header_post"],
+            self.config["header"],
             user_name_details
         )
