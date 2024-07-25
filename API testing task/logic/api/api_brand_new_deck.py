@@ -1,6 +1,4 @@
-
 from infra.api.api_wrapper import APIWrapper
-
 
 
 class APIBrandNewDeck:

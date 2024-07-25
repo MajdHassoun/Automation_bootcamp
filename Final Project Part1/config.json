@@ -7,5 +7,12 @@
   "book_name1": "Leo Messi",
   "library_name": "Kimico Ltd",
   "list_name": "Majd's list",
-  "list description": "This is my list"
+  "jira_url" : "https://majd12hassoun.atlassian.net/",
+  "jira_email" : "majd12hassoun@gmail.com",
+  "list description": "This is my list",
+  "project_key" : "TES",
+  "jira_issue_summary" : "test_search_book",
+  "jira_issue_description": "i found a bug in this test",
+  "jira_api_token" : "ATATT3xFfGF0o2EMglKWLGp9tO3wZSbVSN4Ye080GNShCQAxdr1ccBFC-U8hg9h1_3y6UWlU9_VVJTjbUzC4PUpYwKXnI8uF1LzqmqZ7vbC-o0y-GLf0TmetH5fYrov1MrqVYlGohpw9NPQDL5dBdTgMSSz-mMmNoQdncAXeBM2I-tMCMSHk8-4=C9E55D3F"
+
 }

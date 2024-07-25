@@ -5,6 +5,7 @@ from logic.book_page import BookPage
 from logic.home_page import HomePage
 from logic.search_results_page import SearchResultsPage
 import logging
+from infra.jira_handler import JiraHandler
 from infra.logging_setup import logger_setup
 
 
@@ -33,6 +34,9 @@ class BookSearchTest(unittest.TestCase):
         # Act
         book_name_displayed = book_page.get_book_name()
         # Assert
+        my_jira = JiraHandler()
+        my_jira.create_issue(self.config["project_key"], self.config["jira_issue_summary"],
+                             self.config["jira_issue_description"])
         self.assertEqual(self.config["book_name1"], book_name_displayed)
         logging.info("Test test_search_book ENDED")
 

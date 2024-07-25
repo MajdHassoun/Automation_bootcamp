@@ -8,7 +8,9 @@ from logic.lists_page import ListsPage
 from logic.search_results_page import SearchResultsPage
 from logic.second_sign_in_page import SecondSignInPage
 import logging
-from infra.logging_setup import logger_setup
+
+
+# from infra.logging_setup import logger_setup
 
 
 class ListSaveTest(unittest.TestCase):
@@ -40,13 +42,13 @@ class ListSaveTest(unittest.TestCase):
         logging.info("Test test_make_and_save_to_list STARTED")
         # Arrange
         results_page = SearchResultsPage(self.driver)
-
         # Act
         results_page.add_create_list_flow(self.config["list_name"], self.config["list description"])
         lists_page = ListsPage(self.driver)
         results_page.navigate_to_lists_flow()
 
         # Assert
+
         self.assertEqual(lists_page.get_list_name_button(), self.config["list_name"])
         logging.info("Test test_make_and_save_to_list ENDED")
 
