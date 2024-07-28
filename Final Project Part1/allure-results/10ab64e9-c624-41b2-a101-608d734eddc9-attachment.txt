@@ -1,0 +1,2 @@
+[32mINFO    [0m root:book_search_test.py:65 Test test_check_book_availability STARTED
+[32mINFO    [0m root:book_search_test.py:73 Test test_check_book_availability ENDED

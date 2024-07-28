@@ -1,0 +1,2 @@
+[32mINFO    [0m root:list_save_test.py:58 Test test_check_if_book_in_list STARTED
+[32mINFO    [0m root:list_save_test.py:66 Test test_check_if_book_in_list ENDED

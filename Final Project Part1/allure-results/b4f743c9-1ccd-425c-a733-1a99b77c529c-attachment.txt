@@ -1,0 +1,2 @@
+[32mINFO    [0m root:signin_test.py:26 Test test_valid_signin STARTED
+[32mINFO    [0m root:signin_test.py:36 Test test_valid_signin ENDED

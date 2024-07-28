@@ -1,0 +1,25 @@
+Could not find web driver: Message: no such window: target window already closed
+from unknown error: web view not found
+  (Session info: chrome=127.0.6533.73)
+Stacktrace:
+	GetHandleVerifier [0x009FF653+11395]
+	(No symbol) [0x009DB7A4]
+	(No symbol) [0x00921A43]
+	(No symbol) [0x008FDE83]
+	(No symbol) [0x0098D48F]
+	(No symbol) [0x0099FD56]
+	(No symbol) [0x00986F36]
+	(No symbol) [0x0095A276]
+	(No symbol) [0x0095AECD]
+	GetHandleVerifier [0x00B02403+1071667]
+	GetHandleVerifier [0x00B0C9C4+1114100]
+	GetHandleVerifier [0x00B054B2+1084130]
+	GetHandleVerifier [0x00A2013B+145259]
+	(No symbol) [0x009E1693]
+	(No symbol) [0x009DEFB8]
+	(No symbol) [0x009DF157]
+	(No symbol) [0x009D842E]
+	BaseThreadInitThunk [0x75657BA9+25]
+	RtlInitializeExceptionChain [0x770BC10B+107]
+	RtlClearBits [0x770BC08F+191]
+

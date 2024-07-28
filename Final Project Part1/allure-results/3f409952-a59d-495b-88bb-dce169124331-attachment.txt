@@ -1,0 +1,2 @@
+[32mINFO    [0m root:list_delete_test.py:35 Test test_delete_library STARTED
+[32mINFO    [0m root:list_delete_test.py:47 Test test_delete_library ENDED

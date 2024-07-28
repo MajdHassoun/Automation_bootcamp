@@ -6,9 +6,10 @@ from infra.config_provider import ConfigProvider
 class JiraHandler:
     def __init__(self):
         self.config = ConfigProvider().load_config_json()
+        self.secret_json = ConfigProvider.load_secret_json()
         self._jira_url = self.config["jira_url"]
         self._auth_jira = JIRA(
-            basic_auth=(self.config["jira_email"],self.config["jira_api_token"]),
+            basic_auth=(self.config["jira_email"], self.secret_json["jira_api_token"]),
             options={'server': self._jira_url}
         )
 

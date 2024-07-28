@@ -1,0 +1,2 @@
+[32mINFO    [0m root:book_search_test.py:52 Test test_check_book_summary STARTED
+[32mINFO    [0m root:book_search_test.py:60 Test test_check_book_summary ENDED

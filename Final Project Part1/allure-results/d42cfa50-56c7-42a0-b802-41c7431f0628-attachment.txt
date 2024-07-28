@@ -1,0 +1,2 @@
+[32mINFO    [0m root:return_library_distance_test.py:29 Test test_return_smallest_distance STARTED
+[32mINFO    [0m root:return_library_distance_test.py:38 Test test_return_smallest_distance COMPLETED

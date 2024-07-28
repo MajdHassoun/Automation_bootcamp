@@ -1,0 +1,2 @@
+[32mINFO    [0m root:list_save_test.py:42 Test test_make_and_save_to_list STARTED
+[32mINFO    [0m root:list_save_test.py:53 Test test_make_and_save_to_list ENDED

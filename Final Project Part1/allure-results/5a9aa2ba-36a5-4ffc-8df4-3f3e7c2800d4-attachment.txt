@@ -1,0 +1,2 @@
+[32mINFO    [0m root:save_search_test.py:38 Test test_save_search STARTED
+[32mINFO    [0m root:save_search_test.py:47 Test test_save_search ENDED

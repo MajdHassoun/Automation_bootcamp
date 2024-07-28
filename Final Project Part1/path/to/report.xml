@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="utf-8"?><testsuites><testsuite name="pytest" errors="0" failures="1" skipped="0" tests="13" time="338.898" timestamp="2024-07-25T10:54:22.375685+03:00" hostname="MajdHassoun"><testcase classname="test.book_search_test.BookSearchTest" name="test_check_book_availability" time="17.714" /><testcase classname="test.book_search_test.BookSearchTest" name="test_check_book_summary" time="14.390" /><testcase classname="test.book_search_test.BookSearchTest" name="test_search_book" time="14.168" /><testcase classname="test.library_test.LibraryTest" name="test_find_and_favorite_library" time="40.536" /><testcase classname="test.library_test.LibraryTest" name="test_find_and_unfavorite_library" time="34.284" /><testcase classname="test.list_delete_test.ListDeleteTest" name="test_delete_list" time="42.209" /><testcase classname="test.list_save_test.ListSaveTest" name="test_check_if_book_in_list" time="41.929" /><testcase classname="test.list_save_test.ListSaveTest" name="test_make_and_save_to_list" time="5.884"><failure message="selenium.common.exceptions.ElementClickInterceptedException: Message: element click intercepted: Element is not clickable at point (203, 686)&#10;  (Session info: chrome=127.0.6533.73)&#10;Stacktrace:&#10;&#09;GetHandleVerifier [0x00007FF63D739632+30946]&#10;&#09;(No symbol) [0x00007FF63D6EE3C9]&#10;&#09;(No symbol) [0x00007FF63D5E6FDA]&#10;&#09;(No symbol) [0x00007FF63D63FEEE]&#10;&#09;(No symbol) [0x00007FF63D63D962]&#10;&#09;(No symbol) [0x00007FF63D63AE7B]&#10;&#09;(No symbol) [0x00007FF63D63A095]&#10;&#09;(No symbol) [0x00007FF63D62C271]&#10;&#09;(No symbol) [0x00007FF63D65CA6A]&#10;&#09;(No symbol) [0x00007FF63D62BBB6]&#10;&#09;(No symbol) [0x00007FF63D65CC80]&#10;&#09;(No symbol) [0x00007FF63D67B041]&#10;&#09;(No symbol) [0x00007FF63D65C813]&#10;&#09;(No symbol) [0x00007FF63D62A6E5]&#10;&#09;(No symbol) [0x00007FF63D62B021]&#10;&#09;GetHandleVerifier [0x00007FF63D86F83D+1301229]&#10;&#09;GetHandleVerifier [0x00007FF63D87BDB7+1351783]&#10;&#09;GetHandleVerifier [0x00007FF63D872A03+1313971]&#10;&#09;GetHandleVerifier [0x00007FF63D76DD06+245686]&#10;&#09;(No symbol) [0x00007FF63D6F758F]&#10;&#09;(No symbol) [0x00007FF63D6F3804]&#10;&#09;(No symbol) [0x00007FF63D6F3992]&#10;&#09;(No symbol) [0x00007FF63D6EA3EF]&#10;&#09;BaseThreadInitThunk [0x00007FFACC32257D+29]&#10;&#09;RtlUserThreadStart [0x00007FFACD88AF28+40]">self = &lt;test.list_save_test.ListSaveTest testMethod=test_make_and_save_to_list&gt;
+
+    def setUp(self):
+        # Arrange
+        self.browser = BrowserWrapper()
+        self.config = ConfigProvider.load_config_json()
+        self.driver = self.browser.get_driver(self.config["url"])
+        self.home_page = HomePage(self.driver)
+        self.home_page.refresh_page()
+&gt;       self.home_page.click_accept_cookies()
+
+test\list_save_test.py:22: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+logic\home_page.py:51: in click_accept_cookies
+    cookies_button.click()
+..\..\Final Project Part1\lib\site-packages\selenium\webdriver\remote\webelement.py:94: in click
+    self._execute(Command.CLICK_ELEMENT)
+..\..\Final Project Part1\lib\site-packages\selenium\webdriver\remote\webelement.py:395: in _execute
+    return self._parent.execute(command, params)
+..\..\Final Project Part1\lib\site-packages\selenium\webdriver\remote\webdriver.py:354: in execute
+    self.error_handler.check_response(response)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = &lt;selenium.webdriver.remote.errorhandler.ErrorHandler object at 0x00000177180AAD90&gt;
+response = {'status': 400, 'value': '{"value":{"error":"element click intercepted","message":"element click intercepted: Element ...07FF63D6EA3EF]\\n\\tBaseThreadInitThunk [0x00007FFACC32257D+29]\\n\\tRtlUserThreadStart [0x00007FFACD88AF28+40]\\n"}}'}
+
+    def check_response(self, response: Dict[str, Any]) -&gt; None:
+        """Checks that a JSON response from the WebDriver does not have an
+        error.
+    
+        :Args:
+         - response - The JSON response from the WebDriver server as a dictionary
+           object.
+    
+        :Raises: If the response contains an error message.
+        """
+        status = response.get("status", None)
+        if not status or status == ErrorCode.SUCCESS:
+            return
+        value = None
+        message = response.get("message", "")
+        screen: str = response.get("screen", "")
+        stacktrace = None
+        if isinstance(status, int):
+            value_json = response.get("value", None)
+            if value_json and isinstance(value_json, str):
+                import json
+    
+                try:
+                    value = json.loads(value_json)
+                    if len(value) == 1:
+                        value = value["value"]
+                    status = value.get("error", None)
+                    if not status:
+                        status = value.get("status", ErrorCode.UNKNOWN_ERROR)
+                        message = value.get("value") or value.get("message")
+                        if not isinstance(message, str):
+                            value = message
+                            message = message.get("message")
+                    else:
+                        message = value.get("message", None)
+                except ValueError:
+                    pass
+    
+        exception_class: Type[WebDriverException]
+        e = ErrorCode()
+        error_codes = [item for item in dir(e) if not item.startswith("__")]
+        for error_code in error_codes:
+            error_info = getattr(ErrorCode, error_code)
+            if isinstance(error_info, list) and status in error_info:
+                exception_class = getattr(ExceptionMapping, error_code, WebDriverException)
+                break
+        else:
+            exception_class = WebDriverException
+    
+        if not value:
+            value = response["value"]
+        if isinstance(value, str):
+            raise exception_class(value)
+        if message == "" and "message" in value:
+            message = value["message"]
+    
+        screen = None  # type: ignore[assignment]
+        if "screen" in value:
+            screen = value["screen"]
+    
+        stacktrace = None
+        st_value = value.get("stackTrace") or value.get("stacktrace")
+        if st_value:
+            if isinstance(st_value, str):
+                stacktrace = st_value.split("\n")
+            else:
+                stacktrace = []
+                try:
+                    for frame in st_value:
+                        line = frame.get("lineNumber", "")
+                        file = frame.get("fileName", "&lt;anonymous&gt;")
+                        if line:
+                            file = f"{file}:{line}"
+                        meth = frame.get("methodName", "&lt;anonymous&gt;")
+                        if "className" in frame:
+                            meth = f"{frame['className']}.{meth}"
+                        msg = "    at %s (%s)"
+                        msg = msg % (meth, file)
+                        stacktrace.append(msg)
+                except TypeError:
+                    pass
+        if exception_class == UnexpectedAlertPresentException:
+            alert_text = None
+            if "data" in value:
+                alert_text = value["data"].get("text")
+            elif "alert" in value:
+                alert_text = value["alert"].get("text")
+            raise exception_class(message, screen, stacktrace, alert_text)  # type: ignore[call-arg]  # mypy is not smart enough here
+&gt;       raise exception_class(message, screen, stacktrace)
+E       selenium.common.exceptions.ElementClickInterceptedException: Message: element click intercepted: Element is not clickable at point (203, 686)
+E         (Session info: chrome=127.0.6533.73)
+E       Stacktrace:
+E       	GetHandleVerifier [0x00007FF63D739632+30946]
+E       	(No symbol) [0x00007FF63D6EE3C9]
+E       	(No symbol) [0x00007FF63D5E6FDA]
+E       	(No symbol) [0x00007FF63D63FEEE]
+E       	(No symbol) [0x00007FF63D63D962]
+E       	(No symbol) [0x00007FF63D63AE7B]
+E       	(No symbol) [0x00007FF63D63A095]
+E       	(No symbol) [0x00007FF63D62C271]
+E       	(No symbol) [0x00007FF63D65CA6A]
+E       	(No symbol) [0x00007FF63D62BBB6]
+E       	(No symbol) [0x00007FF63D65CC80]
+E       	(No symbol) [0x00007FF63D67B041]
+E       	(No symbol) [0x00007FF63D65C813]
+E       	(No symbol) [0x00007FF63D62A6E5]
+E       	(No symbol) [0x00007FF63D62B021]
+E       	GetHandleVerifier [0x00007FF63D86F83D+1301229]
+E       	GetHandleVerifier [0x00007FF63D87BDB7+1351783]
+E       	GetHandleVerifier [0x00007FF63D872A03+1313971]
+E       	GetHandleVerifier [0x00007FF63D76DD06+245686]
+E       	(No symbol) [0x00007FF63D6F758F]
+E       	(No symbol) [0x00007FF63D6F3804]
+E       	(No symbol) [0x00007FF63D6F3992]
+E       	(No symbol) [0x00007FF63D6EA3EF]
+E       	BaseThreadInitThunk [0x00007FFACC32257D+29]
+E       	RtlUserThreadStart [0x00007FFACD88AF28+40]
+
+..\..\Final Project Part1\lib\site-packages\selenium\webdriver\remote\errorhandler.py:229: ElementClickInterceptedException</failure></testcase><testcase classname="test.return_library_distance_test.LibraryTest" name="test_return_smallest_distance" time="23.137" /><testcase classname="test.save_search_test.LibraryTest" name="test_delete_saved_search" time="30.487" /><testcase classname="test.save_search_test.LibraryTest" name="test_save_search" time="30.617" /><testcase classname="test.signin_test.SigninTest" name="test_invalid_signin" time="17.843" /><testcase classname="test.signin_test.SigninTest" name="test_valid_signin" time="25.137" /></testsuite></testsuites>

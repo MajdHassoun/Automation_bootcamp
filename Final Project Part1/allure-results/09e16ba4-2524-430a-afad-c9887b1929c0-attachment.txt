@@ -1,0 +1,31 @@
+Could not find web driver: Message: target frame detached
+  (failed to check if window was closed: disconnected: Unable to receive message from renderer)
+  (Session info: chrome=127.0.6533.73)
+Stacktrace:
+	GetHandleVerifier [0x009FF653+11395]
+	(No symbol) [0x009DB7A4]
+	(No symbol) [0x009218BD]
+	(No symbol) [0x0090DD07]
+	(No symbol) [0x0090C436]
+	(No symbol) [0x0090C7FD]
+	(No symbol) [0x0091861A]
+	(No symbol) [0x0092CB75]
+	(No symbol) [0x00931296]
+	(No symbol) [0x0090CE2C]
+	(No symbol) [0x0092C7A7]
+	(No symbol) [0x009A06A1]
+	(No symbol) [0x00986F36]
+	(No symbol) [0x0095A276]
+	(No symbol) [0x0095AECD]
+	GetHandleVerifier [0x00B02403+1071667]
+	GetHandleVerifier [0x00B0C9C4+1114100]
+	GetHandleVerifier [0x00B054B2+1084130]
+	GetHandleVerifier [0x00A2013B+145259]
+	(No symbol) [0x009E1693]
+	(No symbol) [0x009DEFB8]
+	(No symbol) [0x009DF157]
+	(No symbol) [0x009D842E]
+	BaseThreadInitThunk [0x75657BA9+25]
+	RtlInitializeExceptionChain [0x770BC10B+107]
+	RtlClearBits [0x770BC08F+191]
+

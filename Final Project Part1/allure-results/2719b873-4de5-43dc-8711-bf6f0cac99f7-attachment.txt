@@ -1,0 +1,2 @@
+[32mINFO    [0m root:library_test.py:36 Test test_find_and_favorite_library STARTED
+[32mINFO    [0m root:library_test.py:49 Test test_find_and_favorite_library ENDED
